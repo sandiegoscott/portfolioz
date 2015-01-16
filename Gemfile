@@ -12,6 +12,7 @@ gem 'jbuilder', '~> 2.0'
 
 gem 'bootstrap-sass'
 gem 'devise'
+gem 'haml'
 gem 'mysql2'
 gem 'pundit'
 
@@ -23,6 +24,7 @@ end
 
 group :development do
   gem 'better_errors'
+  gem 'erb2haml'
   gem 'quiet_assets'
   gem 'rails_layout'
   gem 'spring-commands-rspec'

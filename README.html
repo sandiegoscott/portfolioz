@@ -1,0 +1,475 @@
+<h1><img src="http://railsapps.github.io/images/rails-36x36.jpg" title="Rails Devise Pundit" alt="Rails Devise Pundit" /> Rails Devise Pundit</h1>
+<p><a href="https://heroku.com/deploy"><img src="https://www.herokucdn.com/deploy/button.png" title="Deploy to Heroku" alt="Deploy to Heroku" /></a> <a href="https://www.nitrous.io/hack_button?source=embed&amp;runtime=rails&amp;repo=RailsApps%2Frails-devise-pundit&amp;file_to_open=nitrous.txt"><img src="https://d3o0mnbgv6k92a.cloudfront.net/assets/hack-l-v1-3cc067e71372f6045e1949af9d96095b.png" title="Hack RailsApps on Nitrous.IO" alt="Hack RailsApps on Nitrous.IO" /></a></p>
+<p>Rails 4.2 example application that provides user management, authentication, and authorization. The application shows how to integrate:</p>
+<ul>
+	<li><a href="https://github.com/plataformatec/devise">Devise</a> for user management and authentication</li>
+	<li><a href="https://github.com/elabs/pundit">Pundit</a> for authorization</li>
+	<li><a href="http://getbootstrap.com/">Bootstrap</a> or <a href="http://foundation.zurb.com/">Foundation</a> front-end frameworks</li>
+</ul>
+<p>Use this example application as a starter app for your own web applications. For a complete explanation of the code, see the tutorials:</p>
+<ul>
+	<li><a href="http://railsapps.github.io/rails-devise-pundit/">Rails and Pundit Tutorial</a></li>
+	<li><a href="http://railsapps.github.io/rails-devise-roles/">Role-Based Authorization Tutorial</a></li>
+	<li><a href="http://railsapps.github.io/rails-devise/">Rails and Devise Tutorial</a></li>
+	<li><a href="http://railsapps.github.io/rspec.html">RSpec Tutorial</a></li>
+</ul>
+<p>You can build this application in only a few minutes using the <a href="http://railsapps.github.io/rails-composer/">Rails Composer</a> tool, choosing either a Bootstrap or Foundation front-end framework, as well as many other options, such as Haml or Slim.</p>
+<p>There&#8217;s also a helpful article on <a href="http://railsapps.github.io/rails-authorization.html">Rails Authorization</a> comparing CanCan and Pundit gems, and looking at simple role-based authorization.</p>
+<h4><a href="http://railsapps.github.io/"><img src="http://railsapps.github.io/images/join/join-railsapps.png" title="Join RailsApps" alt="Join RailsApps" /></a></h4>
+<h4>What is the RailsApps Project?</h4>
+<p>The <a href="http://railsapps.github.io/">RailsApps project</a> provides example applications that developers use as starter apps. Hundreds of developers use the apps, report problems as they arise, and propose solutions. Rails changes frequently; each application is known to work and serves as your personal &#8220;reference implementation.&#8221; Support for the project comes from subscribers. If this application is helpful to you, please <a href="http://railsapps.github.io/">join the RailsApps project</a> to support our work.</p>
+<h4>If You Are New to Rails</h4>
+<p>If you&#8217;re new to Rails, see <a href="http://railsapps.github.io/what-is-ruby-rails.html">What is Ruby on Rails?</a>, the book <a href="http://learn-rails.com/learn-ruby-on-rails.html">Learn Ruby on Rails</a>, and recommendations for a <a href="https://tutorials.railsapps.org/rails-tutorial">Rails tutorial</a>.</p>
+<h2>What Is Implemented &#8212; and What Is Not</h2>
+<p>This application extends the <a href="https://github.com/RailsApps/rails-devise">rails-devise</a> example application to add authorization with Pundit. The <a href="https://github.com/RailsApps/rails-devise">rails-devise</a> example application provides:</p>
+<ul>
+	<li>Home page</li>
+	<li>Navigation bar</li>
+	<li>Sign up (create account)</li>
+	<li>Login</li>
+	<li>&#8220;Forgot password?&#8221; feature</li>
+	<li>&#8220;Remember me&#8221; (stay logged in) feature</li>
+	<li>Edit account (edit user profile)</li>
+	<li>List of users</li>
+</ul>
+<p>This <a href="https://github.com/RailsApps/rails-devise-pundit">rails-devise-pundit</a> example application adds authorization with Pundit, showing how to implement user roles, and limit access to pages based on user role. With this application:</p>
+<ul>
+	<li>an admin can see a list of users</li>
+	<li>an admin can change a user&#8217;s role</li>
+	<li>an ordinary user can&#8217;t see a list of users</li>
+	<li>an ordinary user can&#8217;t change their role</li>
+	<li>an ordinary user can&#8217;t see (or edit) another user&#8217;s profile</li>
+	<li>an ordinary user can see (and edit) their own user profile</li>
+</ul>
+<p>After examining the example application, you&#8217;ll be able to implement access control in your own applications.</p>
+<h4>Database</h4>
+<p>The application requires a database. The example application uses SQLite with Rails ActiveRecord. You can easily substitute PostgreSQL, MySQL, or other databases.</p>
+<h4>Front-end Framework</h4>
+<p>The example application (here in the GitHub repository) integrates Bootstrap for a navigation bar and flash messages. The <a href="https://github.com/RailsApps/rails_layout">rails_layout</a> gem is included so you can switch to the Foundation front-end framework.</p>
+<h2>Similar Examples and Tutorials</h2>
+<p>This is one in a series of Rails example apps and tutorials from the <a href="http://railsapps.github.io/">RailsApps Project</a>. See a list of additional <a href="http://railsapps.github.io/rails-examples-tutorials.html">Rails examples, tutorials, and starter apps</a>. Related example applications may be useful:</p>
+<ul>
+	<li><a href="https://github.com/RailsApps/learn-rails">Learn Rails</a> companion to the book <a href="http://learn-rails.com/learn-ruby-on-rails.html">Learn Ruby on Rails</a></li>
+	<li><a href="http://railsapps.github.io/rails-foundation/">Foundation and Rails</a> shows how to integrate Foundation</li>
+	<li><a href="http://railsapps.github.io/rails-bootstrap/">Bootstrap and Rails</a> shows to integrate Bootstrap</li>
+	<li><a href="https://github.com/RailsApps/rails-omniauth">OmniAuth and Rails</a> uses OmniAuth for authentication</li>
+	<li><a href="https://github.com/RailsApps/rails-devise">Devise and Rails</a> uses Devise for authentication</li>
+</ul>
+<h2>Accounts You Will Need</h2>
+<p>Devise provides a &#8220;Forgot Password?&#8221; feature that resets a password and sends instructions to the user. You&#8217;ll need an email service provider to send email from the application. You can use <a href="https://accounts.google.com/SignUp?service=mail">Gmail</a> during development. You can get a free <a href="https://accounts.google.com/SignUp?service=mail">Gmail</a> account if you don&#8217;t already have one. For production, Gmail is not robust. Use transactional email services, such as <a href="http://mandrill.com/">Mandrill</a>, to send email in production. See the article <a href="http://railsapps.github.io/rails-send-email.html">Send Email with Rails</a> for more information.</p>
+<p>We provide instructions to deploy the application to <a href="https://www.heroku.com/">Heroku</a> which provides Rails application hosting. It costs nothing to set up a Heroku account and deploy as many applications as you want. To deploy an app to Heroku, you must have a Heroku account. Visit Heroku <a href="https://id.heroku.com/signup/devcenter">to set up an account</a>.</p>
+<h2>Dependencies</h2>
+<p>Before generating your application, you will need:</p>
+<ul>
+	<li>The Ruby language &#8211; version 2.2</li>
+	<li>The Rails gem &#8211; version 4.2</li>
+</ul>
+<p>See the article <a href="http://railsapps.github.io/installing-rails.html">Installing Rails</a> for instructions about setting up Rails and your development environment.</p>
+<h2>Getting the Application</h2>
+<h3>Local</h3>
+<p>You have several options for getting the code on your own machine. You can <em>fork</em>, <em>clone</em>, or <em>generate</em>.</p>
+<h4>Fork</h4>
+<p>If you&#8217;d like to add features (or bug fixes) to improve the example application, you can fork the GitHub repo and <a href="http://help.github.com/send-pull-requests/">make pull requests</a>. Your code contributions are welcome!</p>
+<h4>Clone</h4>
+<p>If you want to copy and customize the app with changes that are only useful for your own project, you can clone the GitHub repo. You&#8217;ll need to search-and-replace the project name throughout the application. You probably should generate the app instead (see below). To clone:</p>
+<pre>
+$ git clone git://github.com/RailsApps/rails-devise-pundit.git
+</pre>
+<p>You&#8217;ll need <a href="http://git-scm.com/">git</a> on your machine. See <a href="http://railsapps.github.io/rails-git.html">Rails and Git</a>.</p>
+<h4>Generate</h4>
+<p>If you want to use the project as a starter application, use the <a href="http://railsapps.github.io/rails-composer/">Rails Composer</a> tool to generate a new version of the example app. You&#8217;ll be able to give it your own project name when you generate the app. Generating the application gives you additional options.</p>
+<p>To build the example application, Rails 4.2 must be installed in your development environment. Run the command:</p>
+<pre>
+$ rails new rails-devise-pundit -m https://raw.github.com/RailsApps/rails-composer/master/composer.rb
+</pre>
+<p>The <code>$</code> character indicates a shell prompt; don&#8217;t include it when you run the command.</p>
+<p>This creates a new Rails app named <code>rails-devise-pundit</code> on your computer. You can use a different name if you wish.</p>
+<p>You&#8217;ll see a prompt:</p>
+<pre>
+option  Build a starter application?
+    1)  Build a RailsApps example application
+    2)  Contributed applications
+    3)  Custom application
+</pre>
+<p>Enter &#8220;1&#8221; to select <strong>Build a RailsApps example application</strong>. You&#8217;ll see a prompt:</p>
+<pre>
+option  Choose a starter application.
+    1)  learn-rails
+    2)  rails-bootstrap
+    3)  rails-foundation
+    4)  rails-mailinglist-activejob
+    5)  rails-omniauth
+    6)  rails-devise
+    7)  rails-devise-roles
+    8)  rails-devise-pundit
+    9)  rails-signup-download
+   10)  rails-stripe-checkout
+</pre>
+<p>Choose <strong>rails-devise-pundit</strong>. The Rails Composer tool may give you other options (other applications may have been added since these notes were written).</p>
+<p>The application generator template will ask you for additional preferences:</p>
+<pre>
+ question  Web server for development?
+       1)  WEBrick (default)
+       2)  Thin
+       3)  Unicorn
+       4)  Puma
+       5)  Phusion Passenger (Apache/Nginx)
+       6)  Phusion Passenger (Standalone)
+ question  Web server for production?
+       1)  Same as development
+       2)  Thin
+       3)  Unicorn
+       4)  Puma
+       5)  Phusion Passenger (Apache/Nginx)
+       6)  Phusion Passenger (Standalone)
+ question  Database used in development?
+       1)  SQLite
+       2)  PostgreSQL
+       3)  MySQL
+ question  Template engine?
+       1)  ERB
+       2)  Haml
+       3)  Slim
+ question  Test framework?
+       1)  None
+       2)  RSpec with Capybara
+ question  Front-end framework?
+       1)  None
+       2)  Twitter Bootstrap 3.3
+       3)  Twitter Bootstrap 2.3
+       4)  Zurb Foundation 5.5
+       5)  Zurb Foundation 4.0
+       6)  Simple CSS
+    setup  The Devise 'forgot password' feature requires email.
+ question  Add support for sending email?
+       1)  None
+       2)  Gmail
+       3)  SMTP
+       4)  SendGrid
+       5)  Mandrill
+ question  Devise modules?
+       1)  Devise with default modules
+       2)  Devise with Confirmable module
+ question  Use a form builder gem?
+       1)  None
+       2)  SimpleForm
+   extras  Set a robots.txt file to ban spiders? (y/n)
+   extras  Create a GitHub repository? (y/n)
+   extras  Use or create a project-specific rvm gemset? (y/n)
+</pre>
+<h4>Web Servers</h4>
+<p>If you plan to deploy to Heroku, select Unicorn as your production webserver. Unicorn is recommended by Heroku.</p>
+<h4>Database</h4>
+<p>Use SQLite for development on Mac or Linux, unless you already have PostgreSQL installed locally. Use PostgreSQL if you plan to deploy to Heroku. You can easily change the database later if you select SQLite to start.</p>
+<h4>Template Engine</h4>
+<p>The example application uses the default &#8220;<span class="caps">ERB</span>&#8221; Rails template engine. Optionally, you can use another template engine, such as Haml or Slim. See instructions for <a href="http://railsapps.github.io/rails-haml.html">Haml and Rails</a>.</p>
+<h4>Testing</h4>
+<p>If you are a beginner, select &#8220;None.&#8221;</p>
+<h4>Front-end Framework</h4>
+<p>The example in the GitHub repository was built with the Bootstrap 3 front-end framework. Use Zurb Foundation 5.5 if you like. Choosing either Bootstrap or Foundation will automatically install views with attractive styling.</p>
+<h4>Email</h4>
+<p>Choose Gmail for development if you already have a Gmail account. Choose SendGrid or Mandrill for production if your site will be heavily used.</p>
+<h4>Devise Modules</h4>
+<p>The example in the GitHub repository uses Devise with default modules.</p>
+<h4>Other Choices</h4>
+<p>Set a robots.txt file to ban spiders if you want to keep your new site out of Google search results.</p>
+<p>If you choose to create a GitHub repository, the generator will prompt you for a GitHub username and password.</p>
+<p>It is a good idea to use <a href="https://rvm.io/"><span class="caps">RVM</span></a>, the Ruby Version Manager, and create a project-specific rvm gemset (not available on Windows). See <a href="http://railsapps.github.io/installing-rails.html">Installing Rails</a>.</p>
+<h4>Troubleshooting</h4>
+<p>If you get an error &#8220;OpenSSL certificate verify failed&#8221; or &#8220;Gem::RemoteFetcher::FetchError: SSL_connect&#8221; see the article <a href="http://railsapps.github.io/openssl-certificate-verify-failed.html">OpenSSL errors and Rails</a>.</p>
+<h3>Cloud</h3>
+<p>Click the button below to install the app on <a href="https://www.nitrous.io/">Nitrous.io</a>, a hosted development environment. Nitrous.io is free for small projects. See <a href="http://railsapps.github.io/rubyonrails-nitrous-io.html">Ruby on Rails with Nitrous.io</a> for more information.</p>
+<p><a href="https://www.nitrous.io/hack_button?source=embed&amp;runtime=rails&amp;repo=RailsApps%2Frails-devise-pundit&amp;file_to_open=nitrous.txt"><img src="https://d3o0mnbgv6k92a.cloudfront.net/assets/hack-l-v1-3cc067e71372f6045e1949af9d96095b.png" title="Hack RailsApps on Nitrous.IO" alt="Hack RailsApps on Nitrous.IO" /></a></p>
+<h3>Edit the <span class="caps">README</span></h3>
+<p>If you&#8217;re storing the app in a GitHub repository, please edit the <span class="caps">README</span> files to add a description of the app and your contact info. If you don&#8217;t change the <span class="caps">README</span>, people will think I am the author of your version of the application.</p>
+<h2>Getting Started</h2>
+<p>See the article <a href="http://railsapps.github.io/installing-rails.html">Installing Rails</a> to make sure your development environment is prepared properly.</p>
+<h3>Use <span class="caps">RVM</span></h3>
+<p>I recommend using <a href="https://rvm.io/">rvm</a>, the Ruby Version Manager, to create a project-specific gemset for the application. If you generate the application with the Rails Composer tool, you can create a project-specific gemset.</p>
+<h3>Gems</h3>
+<p>Here are the gems used by the application:</p>
+<ul>
+	<li><a href="http://github.com/plataformatec/devise">Devise</a> for authentication and user management</li>
+	<li><a href="https://github.com/elabs/pundit">Pundit</a> for authorization</li>
+</ul>
+<p>These gems make development easier:</p>
+<ul>
+	<li><a href="https://github.com/charliesome/better_errors">better_errors</a> &#8211; helps when things go wrong</li>
+	<li><a href="https://github.com/evrone/quiet_assets">quiet_assets</a> &#8211; suppresses distracting messages in the log</li>
+	<li><a href="https://github.com/RailsApps/rails_layout">rails_layout</a> &#8211; generates files for an application layout</li>
+</ul>
+<p>Your choice of front-end framework:</p>
+<ul>
+	<li><a href="https://github.com/thomas-mcdonald/bootstrap-sass">bootstrap-sass</a> &#8211; Bootstrap for <span class="caps">CSS</span> and JavaScript</li>
+	<li><a href="https://github.com/zurb/foundation-rails">foundation-rails</a> &#8211; Zurb Foundation for <span class="caps">CSS</span> and JavaScript</li>
+</ul>
+<h3>Install the Required Gems</h3>
+<p>If you used the <a href="http://railsapps.github.io/rails-composer/">Rails Composer</a> tool to generate the example app, the application template script has already run the <code>bundle install</code> command.</p>
+<p>If not, you should run the <code>bundle install</code> command to install the required gems on your computer:</p>
+<pre>
+$ bundle install
+</pre>
+<p>You can check which gems are installed on your computer with:</p>
+<pre>
+$ gem list
+</pre>
+<p>Keep in mind that you have installed these gems locally. When you deploy the app to another server, the same gems (and versions) must be available.</p>
+<h3>Front-end Framework</h3>
+<p>If you generate the application using the <a href="http://railsapps.github.io/rails-composer/">Rails Composer</a> tool, you have the option to install either Bootstrap or Foundation. The folder <strong>app/views/devise/</strong> will contain attractive view files that override the views provided in the Devise gem.</p>
+<h4>Changing the Front-end Framework</h4>
+<p>The version of the application in the repository includes Bootstrap. If you wish to install Foundation instead, use the <a href="https://github.com/RailsApps/rails_layout">rails_layout</a> gem to generate new files. First add a gem to the Gemfile:</p>
+<pre>
+gem 'foundation-rails'
+</pre>
+<p>Use Bundler to install the gem:</p>
+<pre>
+$ bundle install
+</pre>
+<p>To create layout files for use with Zurb Foundation 5.5:</p>
+<pre>
+$ rails generate layout:install foundation5
+</pre>
+<h4>The &#8220;layout:devise&#8221; Command</h4>
+<p>Devise provides a utility command <code>rails generate devise:views</code>. The Devise command creates view files for signup, login, and related features. However, the views generated by Devise lack <span class="caps">CSS</span> styling.</p>
+<p>Use the RailsLayout gem to generate Devise views with styling for Bootstrap or Foundation.</p>
+<ul>
+	<li><code>$ rails generate layout:devise bootstrap3</code></li>
+	<li><code>$ rails generate layout:devise foundation5</code></li>
+</ul>
+<p>The command will create these files:</p>
+<ul>
+	<li>app/views/devise/sessions/new.html.erb</li>
+	<li>app/views/devise/passwords/new.html.erb</li>
+	<li>app/views/devise/registrations/edit.html.erb</li>
+	<li>app/views/devise/registrations/new.html.erb</li>
+</ul>
+<p>Additionally, the command will update a file to append Sass mixins to accommodate Bootstrap or Foundation:</p>
+<ul>
+	<li>app/assets/stylesheets/framework_and_overrides.css.scss</li>
+</ul>
+<p>The Sass mixins allow any view to be used with either Bootstrap or Foundation (so we don&#8217;t have to maintain separate views for each front-end framework).</p>
+<h3>Configuration File</h3>
+<p>To consolidate configuration settings in a single location, we store credentials in the <strong>config/secrets.yml</strong> file. To keep your credentials private, use Unix environment variables to set your credentials. See the article <a href="http://railsapps.github.io/rails-environment-variables.html">Rails Environment Variables</a> for more information.</p>
+<p>Add your credentials to the file <strong>config/secrets.yml</strong>:</p>
+<pre>
+# Make sure the secrets in this file are kept private
+# if you're sharing your code publicly.
+
+development:
+  admin_name: First User
+  admin_email: user@example.com
+  admin_password: changeme
+  email_provider_username: &lt;%= ENV["GMAIL_USERNAME"] %&gt;
+  email_provider_password: &lt;%= ENV["GMAIL_PASSWORD"] %&gt;
+  domain_name: example.com
+  secret_key_base: very_long_random_string
+
+test:
+  secret_key_base: very_long_random_string
+
+# Do not keep production secrets in the repository,
+# instead read values from the environment.
+production:
+  admin_name: &lt;%= ENV["ADMIN_NAME"] %&gt;
+  admin_email: &lt;%= ENV["ADMIN_EMAIL"] %&gt;
+  admin_password: &lt;%= ENV["ADMIN_PASSWORD"] %&gt;
+  email_provider_username: &lt;%= ENV["GMAIL_USERNAME"] %&gt;
+  email_provider_password: &lt;%= ENV["GMAIL_PASSWORD"] %&gt;
+  domain_name: &lt;%= ENV["DOMAIN_NAME"] %&gt;
+  secret_key_base: &lt;%= ENV["SECRET_KEY_BASE"] %&gt;
+</pre>
+<p>All configuration values in the <strong>config/secrets.yml</strong> file are available anywhere in the application as variables. For example, <code>Rails.application.secrets.email_provider_username</code> will return the string set in the Unix environment variable <code>GMAIL_USERNAME</code>.</p>
+<p>For the Gmail username and password, enter the credentials you use to log in to Gmail when you check your inbox. See the article <a href="http://railsapps.github.io/rails-send-email.html">Send Email with Rails</a> if you are using Google two factor authentication.</p>
+<p>The values for <code>admin_email</code> and <code>admin_password</code> are used when the database is seeded. You will be able to log in to the application with these credentials. Note that it&#8217;s not necessary to personalize the <strong>config/secrets.yml</strong> file before you deploy your app. You can deploy the app with an example user and then use the application&#8217;s &#8220;Edit Account&#8221; feature to change email address and password after you log in. Use this feature to log in as an administrator and change the email and password to your own.</p>
+<p>The variable <code>domain_name</code> is used for sending email. You can use <code>example.com</code> in development. If you already have a custom domain name you&#8217;ll use when you deploy the application, you can set <code>domain_name</code>. If you deploy the application to Heroku, you&#8217;ll set <code>domain_name</code> with the unique name you&#8217;ve given your application on Heroku. You&#8217;ll have to wait until you deploy to know the name you&#8217;ll use on Heroku.</p>
+<p>If you don&#8217;t want to use Unix environment variables, you can set each value directly in the <strong>config/secrets.yml</strong> file. The file must be in your git repository when you deploy to Heroku. However, you shouldn&#8217;t save the file to a public GitHub repository where other people can see your credentials.</p>
+<h3>Roles</h3>
+<p>Roles are defined in the <strong>app/models/User.rb</strong> file (the <code>User</code> model).</p>
+<pre>
+class User &lt; ActiveRecord::Base
+  .
+  .
+  .
+  enum role: [:user, :vip, :admin]
+  after_initialize :set_default_role, :if =&gt; :new_record?
+
+  def set_default_role
+    self.role ||= :user
+  end
+
+end
+</pre>
+<p>You can change the available roles by changing the array <code>[:user, :vip, :admin]</code>.</p>
+<p>The application uses the ActiveRecord <code>enum</code> method to manage roles. ActiveRecord provides convenient methods to query the role attribute:</p>
+<pre>
+user.admin! # sets the role to "admin"
+user.admin? # =&gt; true
+user.role  # =&gt; "admin"
+</pre>
+<p>See documentation for <a href="http://edgeapi.rubyonrails.org/classes/ActiveRecord/Enum.html">ActiveRecord::Enum</a> for details.</p>
+<h3>Database Seed File</h3>
+<p>The <strong>db/seeds.rb</strong> file initializes the database with default values.</p>
+<pre>
+# This file should contain all the record creation needed to seed the database with its default values.
+# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+#
+# Examples:
+#
+#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
+#   Mayor.create(name: 'Emanuel', city: cities.first)
+user = CreateAdminService.new.call
+puts 'CREATED ADMIN USER: ' &lt;&lt; user.email
+</pre>
+<p><code>CreateAdminService</code> is a service object that obtains <code>admin_email</code> and <code>admin_password</code> values from the <strong>config/secrets.yml</strong> file. You can examine the file <strong>app/services/create_admin_service.rb</strong> to see how a new user is created.</p>
+<h3>Set the Database</h3>
+<p>If you&#8217;ve used the Rails Composer tool to generate the application, the database is already set up with <code>rake db:migrate</code> and <code>rake db:seed</code>.</p>
+<p>If you&#8217;ve cloned the repo, prepare the database and add the default user to the database by running the commands:</p>
+<pre>
+$ rake db:migrate
+$ rake db:seed
+</pre>
+<p>Use <code>rake db:reset</code> if you want to empty and reseed the database.</p>
+<p>If you’re not using <a href="https://rvm.io/">rvm</a>, the Ruby Version Manager, you should preface each rake command with <code>bundle exec</code>. You don’t need to use <code>bundle exec</code> if you are using rvm version 1.11.0 or newer.</p>
+<h3>Change your Application&#8217;s Secret Token</h3>
+<p>If you&#8217;ve used the Rails Composer tool to generate the application, the application&#8217;s secret token will be unique, just as with any Rails application generated with the <code>rails new</code> command.</p>
+<p>However, if you&#8217;ve cloned the application directly from GitHub, it is crucial that you change the application&#8217;s secret token before deploying your application in production mode. Otherwise, people could change their session information, and potentially access your site without permission. Your secret token should be at least 30 characters long and completely random.</p>
+<p>Get a unique secret token:</p>
+<pre>
+rake secret
+</pre>
+<p>Edit the <strong>config/secrets.yml</strong> file to change the secret token.</p>
+<h2>Test the App</h2>
+<p>You can check that your application runs properly by entering the command:</p>
+<pre>
+$ rails server
+</pre>
+<p>To see your application in action, open a browser window and navigate to <a href="http://localhost:3000">http://localhost:3000/</a>.</p>
+<p>You should see a home page with a navigation bar.</p>
+<p>You should be able to click the navigation links for &#8220;Log in&#8221; and &#8220;Sign up.&#8221;</p>
+<p>Log in with the credentials in the <strong>config/secrets.yml</strong> file. You&#8217;ll see a new navigation link for &#8220;Users.&#8221; Click the &#8220;Users&#8221; link and you&#8217;ll see a list of users (initially, just yourself). Log out and create a new account with the &#8220;Sign up&#8221; navigation link.</p>
+<p>Log in with a new account. Try clicking the &#8220;Users&#8221; link and you&#8217;ll be denied access (you are not an admin). Log out.</p>
+<p>Log in with the first account (the admin account). Click the &#8220;Users&#8221; link. You&#8217;ll see both users. Change the role for the second user.</p>
+<p>You&#8217;ve seen a simple demonstration of access control.</p>
+<p>Stop the server with Control-C. If you test the app by starting the web server and then leave the server running while you install new gems, you’ll have to restart the server to see any changes. The same is true for changes to configuration files in the config folder. This can be confusing to new Rails developers because you can change files in the app folders without restarting the server. Stop the server each time after testing and you will avoid this issue.</p>
+<h3>RSpec Test Suite</h3>
+<p>The application contains a suite of RSpec tests. To run:</p>
+<pre>
+$ rspec
+</pre>
+<h2>Deploy to Heroku</h2>
+<p>Heroku provides low cost, easily configured Rails application hosting.</p>
+<h4>One Click Deployment</h4>
+<p>For one-click deployment, click the button to deploy to Heroku:</p>
+<p><a href="https://heroku.com/deploy"><img src="https://www.herokucdn.com/deploy/button.png" title="Deploy to Heroku" alt="Deploy to Heroku" /></a></p>
+<h4>From the Command Line</h4>
+<p>Alternatively, you can deploy from the command line.</p>
+<pre>
+$ git push origin master
+</pre>
+<p>If you&#8217;ve set configuration values in the <strong>config/secrets.yml</strong> file, you&#8217;ll need to set them as Heroku environment variables. You can set Heroku environment variables directly with <code>heroku config:add</code>. For example:</p>
+<pre>
+$ heroku config:add ADMIN_NAME='First User'
+$ heroku config:add ADMIN_EMAIL='user@example.com' ADMIN_PASSWORD='changeme'
+$ heroku config:add GMAIL_USERNAME='myname@gmail.com' GMAIL_PASSWORD='secret'
+$ heroku config:add DOMAIN_NAME='example.com'
+</pre>
+<p>See the <a href="http://railsapps.github.io/rails-heroku-tutorial.html">Tutorial for Rails on Heroku</a> for details.</p>
+<h2>Troubleshooting</h2>
+<p>Problems? Check the <a href="https://github.com/RailsApps/rails-devise-pundit/issues">issues</a>.</p>
+<h4>Error &#8220;Undefined method `authorize&#8217;&#8221;</h4>
+<p>If you change the Pundit policy file, you may get the error, &#8220;Undefined method `authorize&#8217;.&#8221;</p>
+<p>The error may be due to <a href="https://github.com/rails/spring">Spring</a>, the Rails application preloader. Spring keeps your application running in the background (the intent is to eliminate time needed to start the application during development). You may think you&#8217;ve restarted your application after making changes, but Spring has kept the application running. You can check if Spring is running:</p>
+<pre>
+$ bin/spring status
+</pre>
+<p>When you get the error &#8220;Undefined method `authorize&#8217;,&#8221; stop Spring and the problem will be resolved:</p>
+<pre>
+$ bin/spring stop
+</pre>
+<h2>Issues</h2>
+<p>Please create a <a href="https://github.com/RailsApps/rails-devise-pundit/issues">GitHub issue</a> if you identify any problems or have suggestions for improvements.</p>
+<h2>Where to Get Help</h2>
+<p>Your best source for help with problems is <a href="http://stackoverflow.com/questions/tagged/ruby-on-rails-3">Stack Overflow</a>. Your issue may have been encountered and addressed by others.</p>
+<p>Use the tag &#8220;railsapps&#8221; on Stack Overflow for extra attention.</p>
+<h2>Contributing</h2>
+<p>If you make improvements to this application, please share with others.</p>
+<p>Send the author a message, create an <a href="https://github.com/RailsApps/rails-devise-pundit/issues">issue</a>, or fork the project and submit a pull request.</p>
+<p>If you add functionality to this application, create an alternative implementation, or build an application that is similar, please contact me and I&#8217;ll add a note to the <span class="caps">README</span> so that others can find your work.</p>
+<h2>Credits</h2>
+<p>Special thanks to <a href="https://github.com/Jrakesh/">Rakesh Jha</a> for code contributions.</p>
+<p>Daniel Kehoe implemented the application and wrote the tutorial.</p>
+<p>Is the app useful to you? Follow the project on Twitter: <a href="http://twitter.com/rails_apps">@rails_apps</a><br />
+and tweet some praise. I&#8217;d love to know you were helped out by what I&#8217;ve put together.</p>
+<h2><span class="caps">MIT</span> License</h2>
+<p><a href="http://www.opensource.org/licenses/mit-license"><span class="caps">MIT</span> License</a></p>
+<p>Copyright ©2014-15 Daniel Kehoe</p>
+<h2>Useful Links</h2>
+<table>
+	<tr>
+		<th>Getting Started </th>
+		<th>Articles </th>
+		<th>Tutorials </th>
+	</tr>
+	<tr>
+		<td> <a href="http://railsapps.github.io/ruby-and-rails.html">Ruby on Rails</a> </td>
+		<td>                                     <a href="http://railsapps.github.io/rails-google-analytics.html">Analytics for Rails</a> </td>
+		<td>                 <a href="http://railsapps.github.io/twitter-bootstrap-rails.html">Rails Bootstrap</a> </td>
+	</tr>
+	<tr>
+		<td> <a href="http://railsapps.github.io/what-is-ruby-rails.html">What is Ruby on Rails?</a> </td>
+		<td>                        <a href="http://railsapps.github.io/rails-heroku-tutorial.html">Heroku and Rails</a> </td>
+		<td>                     <a href="http://railsapps.github.io/rails-foundation.html">Rails Foundation</a> </td>
+	</tr>
+	<tr>
+		<td> <a href="http://learn-rails.com/learn-ruby-on-rails.html">Learn Ruby on Rails</a> </td>
+		<td>                              <a href="http://railsapps.github.io/rails-javascript-include-external.html">JavaScript and Rails</a> </td>
+		<td>     <a href="http://railsapps.github.io/rspec.html">RSpec Tutorial</a> </td>
+	</tr>
+	<tr>
+		<td> <a href="https://tutorials.railsapps.org/rails-tutorial">Rails Tutorial</a> </td>
+		<td>                                    <a href="http://railsapps.github.io/rails-environment-variables.html">Rails Environment Variables</a> </td>
+		<td>    <a href="http://railsapps.github.io/tutorial-rails-devise.html">Rails Devise Tutorial</a> </td>
+	</tr>
+	<tr>
+		<td> <a href="http://learn-rails.com/ruby-on-rails-tutorial-for-beginners">Ruby on Rails Tutorial for Beginners</a> </td>
+		<td> <a href="http://railsapps.github.io/rails-git.html">Git and GitHub with Rails</a> </td>
+		<td>                        <a href="http://railsapps.github.io/tutorial-rails-devise-rspec-cucumber.html">Devise RSpec</a> </td>
+	</tr>
+	<tr>
+		<td> <a href="http://railsapps.github.io/installing-rails.html">Install Ruby on Rails</a> </td>
+		<td>                           <a href="http://railsapps.github.io/rails-send-email.html">Send Email with Rails</a> </td>
+		<td>                     <a href="http://railsapps.github.io/tutorial-rails-bootstrap-devise-cancan.html">Devise Bootstrap</a> </td>
+	</tr>
+	<tr>
+		<td> <a href="http://railsapps.github.io/installrubyonrails-mac.html">Install Ruby on Rails &#8211; Mac OS X</a> </td>
+		<td>          <a href="http://railsapps.github.io/rails-haml.html">Haml and Rails</a> </td>
+		<td>                                  <a href="https://tutorials.railsapps.org/rails-stripe-membership-saas">Rails Membership Site with Stripe</a> </td>
+	</tr>
+	<tr>
+		<td> <a href="http://railsapps.github.io/installrubyonrails-ubuntu.html">Install Ruby on Rails &#8211; Ubuntu</a> </td>
+		<td>         <a href="http://railsapps.github.io/rails-default-application-layout.html">Rails Application Layout</a> </td>
+		<td>  <a href="https://tutorials.railsapps.org/rails-recurly-subscription-saas">Rails Subscription Site with Recurly</a> </td>
+	</tr>
+	<tr>
+		<td> <a href="http://railsapps.github.io/rubyonrails-nitrous-io.html">Ruby on Rails &#8211; Nitrous.io</a> </td>
+		<td>                <a href="http://railsapps.github.io/rails-html5-boilerplate.html">HTML5 Boilerplate for Rails</a> </td>
+		<td>        <a href="https://tutorials.railsapps.org/rails-prelaunch-signup">Startup Prelaunch Signup Application</a> </td>
+	</tr>
+	<tr>
+		<td> <a href="http://railsapps.github.io/updating-rails.html">Update Rails</a> </td>
+		<td>                                      <a href="http://railsapps.github.io/rails-3-2-example-gemfile.html">Example Gemfiles for Rails</a> </td>
+	</tr>
+	<tr>
+		<td> <a href="http://railsapps.github.io/rails-composer/">Rails Composer</a> </td>
+		<td>                                        <a href="http://railsapps.github.io/rails-application-templates.html">Rails Application Templates</a> </td>
+	</tr>
+	<tr>
+		<td> <a href="http://railsapps.github.io/">Rails Examples</a> </td>
+		<td>                                                       <a href="http://railsapps.github.io/rails-product-planning.html">Rails Product Planning</a> </td>
+	</tr>
+	<tr>
+		<td> <a href="http://railsapps.github.io/rails-examples-tutorials.html">Rails Starter Apps</a> </td>
+		<td>                      <a href="http://railsapps.github.io/rails-project-management.html">Rails Project Management</a> </td>
+	</tr>
+</table>
+<p><img src="https://cruel-carlota.pagodabox.com/35c53c3ecd4a812f6b4c797c63c15af8" title="githalytics.com alpha" alt="githalytics.com alpha" /></p>
