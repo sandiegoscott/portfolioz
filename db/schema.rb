@@ -11,7 +11,89 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140228010617) do
+ActiveRecord::Schema.define(version: 20140616230904) do
+
+  create_table "accounts", force: :cascade do |t|
+    t.integer  "brokerage_id", limit: 4
+    t.string   "name",         limit: 60
+    t.decimal  "value",                   precision: 12, scale: 2, default: 0.0
+    t.decimal  "cash",                    precision: 12, scale: 2, default: 0.0, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "brokerages", force: :cascade do |t|
+    t.integer  "household_id", limit: 4
+    t.string   "name",         limit: 60
+    t.decimal  "cash",                    precision: 12, scale: 2, default: 0.0, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "holdings", force: :cascade do |t|
+    t.integer  "account_id",    limit: 4
+    t.integer  "investment_id", limit: 4
+    t.decimal  "shares",                  precision: 12, scale: 5
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "households", force: :cascade do |t|
+    t.string   "name",       limit: 60
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "investments", force: :cascade do |t|
+    t.integer  "household_id", limit: 4
+    t.string   "symbol",       limit: 20
+    t.string   "name",         limit: 60, default: ""
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "recommendations", force: :cascade do |t|
+    t.integer  "source_id",     limit: 4
+    t.integer  "investment_id", limit: 4
+    t.date     "ddate"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sources", force: :cascade do |t|
+    t.integer  "household_id", limit: 4
+    t.string   "name",         limit: 60
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "splits", force: :cascade do |t|
+    t.integer  "investment_id", limit: 4
+    t.date     "ddate"
+    t.decimal  "shares_before",           precision: 12, scale: 5
+    t.decimal  "shares_after",            precision: 12, scale: 5
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.integer  "kind",          limit: 4
+    t.integer  "investment_id", limit: 4
+    t.integer  "account_id",    limit: 4
+    t.integer  "holding_id",    limit: 4
+    t.date     "ddate"
+    t.decimal  "cash_change",               precision: 12, scale: 2, default: 0.0
+    t.decimal  "shares",                    precision: 12, scale: 5
+    t.decimal  "price",                     precision: 12, scale: 5
+    t.decimal  "amount",                    precision: 12, scale: 2
+    t.decimal  "commission",                precision: 12, scale: 2, default: 0.0
+    t.decimal  "shares_change",             precision: 12, scale: 5
+    t.decimal  "shares_before",             precision: 12, scale: 5
+    t.decimal  "shares_after",              precision: 12, scale: 5
+    t.string   "note",          limit: 140
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
