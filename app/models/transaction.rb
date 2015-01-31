@@ -1,7 +1,7 @@
 class Transaction < ActiveRecord::Base
 
   # types of transactions:
-  enum kind: [:buy, :cover, :deposit, :dividend, :expense, :interest, :sell, :short, :withdrawal]
+  enum kind: [:deposit, :withdrawal, :expense, :dividend, :interest, :buy, :cover, :sell, :short]
 
   # associations
   belongs_to  :account
@@ -32,19 +32,18 @@ class Transaction < ActiveRecord::Base
   attr_accessor :date_str
 
   # callbacks
-  before_validation   :compute_date, :if => :date_str
+  before_validation   :set_date
   before_validation   :compute_changes
-  before_save         :check_valid
   after_save          :update_account, :update_holding
 
   private
 
-  def compute_date
-    ddate = Date.parse(date_str) if date_str
+  def set_date
+    self.ddate = Date.parse(date_str) if date_str
+    self.ddate ||= Date.today
   end
 
   def update_account
-    puts ">>>> /Transaction#update_account/"
     account.update_cash
   end
 
@@ -56,30 +55,26 @@ class Transaction < ActiveRecord::Base
   def compute_changes
     if deposit? || withdrawal?
       if amount.nil?
-        cash_change  = nil
+        self.cash_change  = nil
       else
-        cash_change = deposit? ? amount : -amount
+        self.cash_change = deposit? ? amount : -amount
       end
     elsif is_trade?
       if shares.nil?
-        shares_change = nil
-        cash_change = nil
+        self.shares_change = nil
+        self.cash_change = nil
       else
-        shares_change = (buy? || cover?) ? shares : -shares
-        puts ">>>> self.inspect=#{self.inspect}"
+        self.shares_change = (buy? || cover?) ? shares : -shares
+        #puts ">>>> self.inspect=#{self.inspect}"
         if price.nil?
-          cash_change = nil
+          self.cash_change = nil
         else
-          cash_change = shares * price - commission
-          cash_change = -cash_change if buy? || cover?
+          self.cash_change = shares * price - commission
+          self.cash_change = -cash_change if buy? || cover?
         end
       end
     end
-    puts ">>>> self.inspect=#{self.inspect}"
-  end
-
-  def check_valid
-    puts ">>>> /check_valid?  self.valid?=#{self.valid?}"
+    #puts ">>>> self.inspect=#{self.inspect}"
   end
 
   def is_cash_only?

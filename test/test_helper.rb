@@ -22,6 +22,9 @@ class ActiveSupport::TestCase
   # Add more helper methods to be used by all tests here...
 end
 
+#
+# all default Fabrications should valide
+#
 
 Fabricator(:investment) do
   name 'International Business Machines Corp'
@@ -48,9 +51,75 @@ Fabricator(:holding) do
   shares 100.0
 end
 
-Fabricator(:transaction) do
-  ddate { Date.today }
+Fabricator(:deposit, from: :transaction) do
+  account
+  kind :deposit
+  amount 100.00
+end
+
+Fabricator(:withdrawal, from: :transaction) do
+  account
+  kind :withdrawal
+  amount 100.00
+end
+
+Fabricator(:expense, from: :transaction) do
+  account
+  kind :expense
+  amount 100.00
+end
+
+Fabricator(:dividend, from: :transaction) do
+  investment
+  account
+  kind :dividend
+  amount 100.00
+end
+
+Fabricator(:interest, from: :transaction) do
+  account
+  kind :interest
+  amount 100.00
+end
+
+Fabricator(:buy, from: :transaction) do
   investment
   account
   holding
+  kind :buy
+  shares 75
+  price 100.00
 end
+
+Fabricator(:cover, from: :transaction) do
+  investment
+  account
+  holding
+  kind :cover
+  shares 75
+  price 100.00
+end
+
+Fabricator(:sell, from: :transaction) do
+  investment
+  account
+  holding
+  kind :sell
+  shares 75
+  price 100.00
+end
+
+Fabricator(:short, from: :transaction) do
+  investment
+  account
+  holding
+  kind :short
+  shares 75
+  price 100.00
+end
+
+
+  #enum kind: [:deposit, :withdrawal, :expense, :dividend, :interest, :buy, :cover, , :sell, :short]
+
+
+

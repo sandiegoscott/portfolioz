@@ -5,8 +5,16 @@ require 'test_helper'
 class TransactionTest < Minitest::Test
   describe TransactionTest do
     it "must validate properly" do
-      #Fabricate(:transaction, kind: :deposit).valid?.must_equal false
-      Fabricate(:transaction, kind: :deposit, amount: 100.00).valid?.must_equal true
+      Fabricate(:deposit).valid?.must_equal true
+      Fabricate(:withdrawal).valid?.must_equal true
+      Fabricate(:expense).valid?.must_equal true
+      Fabricate(:dividend).valid?.must_equal true
+      Fabricate(:interest).valid?.must_equal true
+      Fabricate(:buy).valid?.must_equal true
+      Fabricate(:cover).valid?.must_equal true
+      Fabricate(:sell).valid?.must_equal true
+      Fabricate(:short).valid?.must_equal true
+
       #Fabricate.build(:transaction, shares: nil).valid?.must_equal false
       #Fabricate.build(:transaction, price: nil).valid?.must_equal false
     end
