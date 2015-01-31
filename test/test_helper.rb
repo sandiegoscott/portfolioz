@@ -23,6 +23,10 @@ class ActiveSupport::TestCase
 end
 
 
+Fabricator(:investment) do
+  name 'International Business Machines Corp'
+end
+
 Fabricator(:household) do
   name 'Smith'
 end
@@ -35,15 +39,18 @@ end
 Fabricator(:account ) do
   name 'Smith IRA'
   brokerage
+  # cash defaults to 0.0
 end
 
 Fabricator(:holding) do
-  account
   investment
+  account
   shares 100.0
 end
 
 Fabricator(:transaction) do
   ddate { Date.today }
+  investment
   account
+  holding
 end

@@ -35,7 +35,7 @@ group :development, :test do
   #gem 'rspec-rails'
   gem 'faker'
   gem 'fabrication'
-  gem 'minitest-rails'
+  gem 'minitest-rails' # apparently brings in minitest-spec as well
 end
 
 group :test do

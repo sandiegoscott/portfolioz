@@ -4,17 +4,16 @@ class Brokerage < ActiveRecord::Base
 
   has_many    :accounts, :dependent => :destroy
 
-  validates_presence_of  :household_id, :name
+  validates   :household, presence: true
+  validates   :name, presence: true
 
   # ================ methods ================
 
   def update_cash
-    cash = 0.0
-    self.accounts.each do |account|
-      #account.recalculate
-      cash += account.cash
-    end
-    self.update_attribute(:cash, cash)
+    return if accounts.count == 0
+    ccash = self.accounts.sum("cash")
+    self.update_attribute(:cash, ccash)
+    #puts ">>>>> /Brokerage#update_cash/  cash=#{ccash}  accounts_count=#{accounts_count}"
   end
 
 end

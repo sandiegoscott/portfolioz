@@ -1,6 +1,6 @@
 require 'test_helper'
 #require 'minitest/spec'
-require 'minitest/autorun'
+#require 'minitest/autorun'
 
 class TransactionTest < Minitest::Test
   describe TransactionTest do
