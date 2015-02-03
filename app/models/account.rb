@@ -18,7 +18,7 @@ class Account < ActiveRecord::Base
 
   def update_cash
     return if transactions.count == 0
-    ccash = transactions.sum("cash_change")
+    ccash = transactions.sum("cash_delta")
     self.update_attribute(:cash, ccash)
     #puts ">>>>> /Account#update_cash/  cash=#{ccash}  transactions_count=#{transactions_count}"
   end

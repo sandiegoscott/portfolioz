@@ -81,7 +81,7 @@ Fabricator(:event) do
   ddate { Date.today }
   account
   commission 10.0
-  cash_change 10.0
+  cash_delta 10.0
 end
 
 Fabricator(:deposit) do

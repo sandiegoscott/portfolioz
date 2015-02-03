@@ -82,12 +82,12 @@ ActiveRecord::Schema.define(version: 20140616230904) do
     t.integer  "account_id",    limit: 4
     t.integer  "holding_id",    limit: 4
     t.date     "ddate"
-    t.decimal  "cash_change",               precision: 12, scale: 2, default: 0.0
-    t.decimal  "shares",                    precision: 12, scale: 5
+    t.decimal  "cash_delta",                precision: 12, scale: 2, default: 0.0
     t.decimal  "price",                     precision: 12, scale: 5
     t.decimal  "amount",                    precision: 12, scale: 2
     t.decimal  "commission",                precision: 12, scale: 2, default: 0.0
-    t.decimal  "shares_change",             precision: 12, scale: 5
+    t.decimal  "shares_delta",              precision: 12, scale: 5
+    t.decimal  "shares",                    precision: 12, scale: 5
     t.decimal  "shares_before",             precision: 12, scale: 5
     t.decimal  "shares_after",              precision: 12, scale: 5
     t.string   "note",          limit: 140

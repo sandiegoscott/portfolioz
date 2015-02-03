@@ -19,7 +19,7 @@ class Holding < ActiveRecord::Base
       # update_shares
       events_count = Transaction.where(account_id: self.account_id, investment_id: self.investment_id).count
       return if events_count == 0
-      shares = Transaction.where(account_id: self.account_id, investment_id: self.investment_id).sum("shares_change")
+      shares = Transaction.where(account_id: self.account_id, investment_id: self.investment_id).sum("shares_delta")
 
       save
     end
@@ -28,7 +28,7 @@ class Holding < ActiveRecord::Base
   def update_shares
     events_count = Transaction.where(account_id: self.account_id, investment_id: self.investment_id).count
     return if events_count == 0
-    self.shares = Transaction.where(account_id: self.account_id, investment_id: self.investment_id).sum("shares_change")
+    self.shares = Transaction.where(account_id: self.account_id, investment_id: self.investment_id).sum("shares_delta")
   end
 
 end

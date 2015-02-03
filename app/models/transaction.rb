@@ -1,7 +1,7 @@
 class Transaction < ActiveRecord::Base
 
   # types of transactions:
-  enum kind: [:deposit, :withdrawal, :expense, :dividend, :interest, :buy, :cover, :sell, :short]
+  enum kind: [:deposit, :withdrawal, :expense, :interest, :dividend, :buy, :cover, :sell, :short]
 
   # associations
   belongs_to  :account
@@ -9,84 +9,96 @@ class Transaction < ActiveRecord::Base
   belongs_to  :holding
 
   # validate associations
-  validates   :account, presence: true
-  validates   :investment, presence: true, :if => :is_trade_or_dividend?
-  validates   :holding, presence: true, :if => :is_trade?
+  validates   :account, presence: true, :unless => :new_record?
+  validates   :investment, presence: true, :if => :trade_or_dividend?, :unless => :new_record?
+  validates   :holding, presence: true, :if => :trade?, :unless => :new_record?
 
   # validate date
   validates   :ddate, presence: true
 
   # all transactions produce a cash change
-  validates   :cash_change, presence: true, numericality: true
+  validates   :cash_delta, numericality: true  # , presence: true
 
-  # validations for trades
-  validates   :shares, presence: true, :if => :is_trade?
-  validates   :shares, :numericality => { :greater_than => 0 }, :if => :is_trade?
-  validates   :price, presence: true, :if => :is_trade?
-  validates   :price, :numericality => { :greater_than => 0 }, :if => :is_trade?
-  validates   :commission, presence: true, :if => :is_trade?
-  validates   :commission, :numericality => { :greater_than_or_equal_to => 0 }, :if => :is_trade?
-  validates   :shares_change, :numericality => true, :if => :is_trade?
+  # trades produce a shares change
+  validates   :shares_delta, :numericality => true, :if => :trade?
+
+  # other validations for trades
+  validates   :shares, presence: true, :if => :trade?
+  validates   :shares, :numericality => { :greater_than => 0 }, :if => :trade?
+  validates   :price, presence: true, :if => :trade?
+  validates   :price, :numericality => { :greater_than => 0 }, :if => :trade?
+  validates   :commission, presence: true, :if => :trade?
+  validates   :commission, :numericality => { :greater_than_or_equal_to => 0 }, :if => :trade?
 
   # can supply date as a string
   attr_accessor :date_str
 
   # callbacks
-  before_validation   :set_date
-  before_validation   :compute_changes
-  after_save          :update_account, :update_holding
+  before_validation   :set_date, :compute_shares_delta, :compute_cash_delta
+  after_validation    :update_account, :update_holding
 
   private
 
+  def trade?
+    buy? or cover? or sell? or short?
+  end
+
+  def trade_or_dividend?
+    trade? or dividend?
+  end
+
   def set_date
+    #puts ">>>>> /set_date/"
     self.ddate = Date.parse(date_str) if date_str
     self.ddate ||= Date.today
   end
 
+  def compute_cash_delta
+    #puts ">>>>> /compute_cash_delta/"
+    if trade?
+      if shares.nil?
+        cash_delta = nil
+      else
+        if price.nil?
+          cash_delta = nil
+        else
+          cash_delta = shares * price
+          cash_delta = -cash_delta if buy? or cover?
+          cash_delta -= commission
+        end
+      end
+    else # if :deposit, :withdrawal, :expense, :interest, :dividend
+      if amount.nil?
+        cash_delta = nil
+      else
+        cash_delta = (deposit? or interest? or dividend?) ? amount : -amount
+      end
+    end
+    self.cash_delta = cash_delta
+  end
+
+  def compute_shares_delta
+    #puts ">>>>> /compute_shares_delta/"
+    return unless trade?
+    if shares.nil?
+      self.shares_delta = nil
+    else
+      if (buy? or cover?)
+        self.shares_delta = self.shares
+      else
+        self.shares_delta = -self.shares
+      end
+    end
+  end
+
   def update_account
-    account.update_cash
+    #puts ">>>>> /update_account/"
+    account.update_cash if account
   end
 
   def update_holding
+    #puts ">>>>> /update_holding/"
     holding.update_shares if holding
-  end
-
-  # Transaction::before_validation
-  def compute_changes
-    if deposit? || withdrawal?
-      if amount.nil?
-        self.cash_change  = nil
-      else
-        self.cash_change = deposit? ? amount : -amount
-      end
-    elsif is_trade?
-      if shares.nil?
-        self.shares_change = nil
-        self.cash_change = nil
-      else
-        self.shares_change = (buy? || cover?) ? shares : -shares
-        #puts ">>>> self.inspect=#{self.inspect}"
-        if price.nil?
-          self.cash_change = nil
-        else
-          self.cash_change = shares * price - commission
-          self.cash_change = -cash_change if buy? || cover?
-        end
-      end
-    end
-    #puts ">>>> self.inspect=#{self.inspect}"
-  end
-
-  def is_cash_only?
-    deposit? || withdrawal?
-  end
-
-  def is_trade?
-    buy? || cover? || sell? || short?
-  end
-
-  def is_trade_or_dividend?
-    is_trade? || dividend?
   end
 
 end
