@@ -6,6 +6,7 @@ class UserTest < Minitest::Test
       user = Fabricate(:user)
       user.valid?.must_equal true
       user.admin?.must_equal true
+      user.email.wont_be_nil
 
       user = Fabricate.build(:user, email: "joe2@user.com", password_confirmation: 'wrong password')
       user.invalid?(:password_confirmation).must_equal true
