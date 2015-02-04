@@ -31,14 +31,17 @@ group :development do
 end
 
 group :development, :test do
-  #gem 'factory_girl_rails'
-  #gem 'rspec-rails'
-  gem 'faker'
-  gem 'fabrication'
-  gem 'minitest-rails' # apparently brings in minitest-spec as well
+  # uncomment to use Rspec
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  # uncomment to use Minitest
+  # gem 'minitest-rails'
+  # gem 'fabrication'
 end
 
 group :test do
+  # uncomment as needed
+  gem 'faker'
   # gem 'capybara'
   # gem 'database_cleaner'
   # gem 'launchy'
