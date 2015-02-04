@@ -4,7 +4,7 @@ class Brokerage < ActiveRecord::Base
 
   has_many    :accounts, :dependent => :destroy
 
-  validates   :household, presence: true
+  validates   :household, presence: true, :unless => :new_record?
   validates   :name, presence: true
 
   # ================ methods ================

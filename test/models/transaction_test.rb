@@ -6,10 +6,31 @@ class TransactionTest < Minitest::Test
   describe TransactionTest do
 
     # enum kind: [:deposit, :withdrawal, :expense, :interest, :dividend, :buy, :cover, :sell, :short]
-    it "must validate and compute attributes properly" do
+    it "must validate properly" do
+
+      deposit = Fabricate(:deposit)
+      deposit.valid?.must_equal true
+      deposit.account.wont_be_nil
+
+      Fabricate(:deposit, account: nil).valid?.must_equal false
+
+      Fabricate(:dividend, account: nil).investment.wont_be_nil
+
+      buy = Fabricate(:buy)
+      buy.valid?.must_equal true
+      buy.account.wont_be_nil
+      buy.investment.wont_be_nil
+      buy.holding.wont_be_nil
+
+      Fabricate(:buy, account: nil).valid?.must_equal false
+      Fabricate(:buy, investment: nil).valid?.must_equal false
+      Fabricate(:buy, holding: nil).valid?.must_equal false
+
+    end
+
+    it "compute attributes properly" do
 
       deposit = Fabricate(:deposit, amount: 150.0, date_str: "2014-10-31")
-      deposit.account.wont_be_nil
       deposit.ddate.must_equal Date.new(2014,10,31)
       deposit.cash_delta.must_equal 150.0
 
@@ -19,17 +40,14 @@ class TransactionTest < Minitest::Test
       expense = Fabricate(:expense, amount: 150.0, account: nil)
       expense.cash_delta.must_equal -150.0
 
-      expense = Fabricate(:interest, amount: 150.0, account: nil)
-      expense.cash_delta.must_equal 150.0
+      interest = Fabricate(:interest, amount: 150.0, account: nil)
+      interest.cash_delta.must_equal 150.0
 
       dividend = Fabricate(:dividend, amount: 150.0, account: nil)
       dividend.investment.wont_be_nil
       dividend.cash_delta.must_equal 150.0
 
       buy = Fabricate(:buy, shares: 29.0, price: 5.0, commission: 5.00)
-      buy.account.wont_be_nil
-      buy.investment.wont_be_nil
-      buy.holding.wont_be_nil
       buy.cash_delta.must_equal -150.00
       buy.shares_delta.must_equal 29.0
 

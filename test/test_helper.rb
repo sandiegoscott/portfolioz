@@ -26,8 +26,25 @@ end
 # all default Fabrications should valide
 #
 
+Fabricator(:user) do
+  name 'Joe User'
+  role :admin
+  email "joe@user.com"
+  password "password"
+end
+
 Fabricator(:investment) do
   name 'IBM'
+end
+
+Fabricator(:source) do
+  household
+  name 'IBM'
+end
+
+Fabricator(:recommendation) do
+  investment
+  source
 end
 
 Fabricator(:household) do
@@ -35,20 +52,25 @@ Fabricator(:household) do
 end
 
 Fabricator(:brokerage) do
-  name 'TD Ameritrade'
   household
+  name 'TD Ameritrade'
 end
 
 Fabricator(:account ) do
-  name 'Smith IRA'
   brokerage
-  # cash defaults to 0.0
+  name 'Smith IRA'
 end
 
 Fabricator(:holding) do
   investment
   account
   shares 100.0
+end
+
+Fabricator(:split) do
+  investment
+  shares_before 1.0
+  shares_after 1.0
 end
 
 Fabricator(:transaction) do

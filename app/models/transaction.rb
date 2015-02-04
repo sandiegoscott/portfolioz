@@ -4,13 +4,13 @@ class Transaction < ActiveRecord::Base
   enum kind: [:deposit, :withdrawal, :expense, :interest, :dividend, :buy, :cover, :sell, :short]
 
   # associations
-  belongs_to  :account
   belongs_to  :investment
+  belongs_to  :account
   belongs_to  :holding
 
   # validate associations
-  validates   :account, presence: true, :unless => :new_record?
   validates   :investment, presence: true, :if => :trade_or_dividend?, :unless => :new_record?
+  validates   :account, presence: true, :unless => :new_record?
   validates   :holding, presence: true, :if => :trade?, :unless => :new_record?
 
   # validate date
@@ -35,7 +35,7 @@ class Transaction < ActiveRecord::Base
 
   # callbacks
   before_validation   :set_date, :compute_shares_delta, :compute_cash_delta
-  after_validation    :update_account, :update_holding
+  after_save          :update_account, :update_holding
 
   private
 
@@ -93,12 +93,12 @@ class Transaction < ActiveRecord::Base
 
   def update_account
     #puts ">>>>> /update_account/"
-    account.update_cash if account
+    account.compute_cash if account
   end
 
   def update_holding
     #puts ">>>>> /update_holding/"
-    holding.update_shares if holding
+    holding.compute_shares if holding
   end
 
 end

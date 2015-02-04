@@ -2,6 +2,7 @@ class Source < ActiveRecord::Base
 
   belongs_to  :household
 
-  validates_presence_of :household_id, :name
+  validates   :household, presence: true, :unless => :new_record?
+  validates   :name, presence: true
 
 end
