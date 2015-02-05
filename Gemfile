@@ -42,10 +42,11 @@ end
 group :test do
   # uncomment as needed
   gem 'faker'
-  # gem 'capybara'
-  # gem 'database_cleaner'
-  # gem 'launchy'
-  # gem 'selenium-webdriver'
+  # uncomment for Rspec
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'launchy'
+  gem 'selenium-webdriver'
 end
 
 group :production do
