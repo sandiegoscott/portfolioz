@@ -27,7 +27,7 @@ group :development do
   gem 'erb2haml'
   gem 'quiet_assets'
   gem 'rails_layout'
-  #gem 'spring-commands-rspec'
+  gem 'spring-commands-rspec'
 end
 
 group :development, :test do
