@@ -27,26 +27,27 @@ group :development do
   gem 'erb2haml'
   gem 'quiet_assets'
   gem 'rails_layout'
-  gem 'spring-commands-rspec'
+  # uncomment for Rspec
+  # gem 'spring-commands-rspec'
 end
 
 group :development, :test do
   # uncomment to use Rspec
-  gem 'rspec-rails'
-  gem 'factory_girl_rails'
+  # gem 'rspec-rails'
+  # gem 'factory_girl_rails'
   # uncomment to use Minitest
-  # gem 'minitest-rails'
-  # gem 'fabrication'
+  gem 'minitest-rails'
+  gem 'fabrication'
 end
 
 group :test do
   # uncomment as needed
   gem 'faker'
   # uncomment for Rspec
-  gem 'capybara'
+  # gem 'capybara'
   gem 'database_cleaner'
-  gem 'launchy'
-  gem 'selenium-webdriver'
+  # gem 'launchy'
+  # gem 'selenium-webdriver'
 end
 
 group :production do

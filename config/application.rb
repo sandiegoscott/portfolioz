@@ -9,6 +9,7 @@ Bundler.require(*Rails.groups)
 module RailsDevisePundit
   class Application < Rails::Application
 
+=begin
     config.generators do |g|
       g.test_framework :rspec,
         fixtures: true,
@@ -19,14 +20,13 @@ module RailsDevisePundit
         request_specs: false
       g.fixture_replacement :factory_girl, dir: "spec/factories"
     end
+=end
 
-=begin
     # Use Minitest for testing. Fabrication instead of fixtures.
     config.generators do |g|
       g.test_framework      :minitest, spec: true, fixture_replacement: :fabrication
       g.fixture_replacement :fabrication, dir: "test/fabricators"
     end
-=end
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
