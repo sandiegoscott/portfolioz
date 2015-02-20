@@ -50,7 +50,7 @@ class Transaction < ActiveRecord::Base
   def set_date
     #puts ">>>>> /set_date/"
     self.ddate = Date.parse(date_str) if date_str
-    # self.ddate ||= Date.today  THIS SCREWS UP TESTING? or IS USEFULE BECAUSE TODAY IS A GOOD DEFAULT?
+    self.ddate ||= Date.today  # uninitialized date means today
   end
 
   def compute_cash_delta
