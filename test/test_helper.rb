@@ -23,23 +23,37 @@ class ActiveSupport::TestCase
 end
 
 #
+# use transactions -- comment this out to see the test database entries
+#
+
+DatabaseCleaner.strategy = :transaction
+class MiniTest::Spec
+  before :each do
+    DatabaseCleaner.start
+  end
+  after :each do
+    DatabaseCleaner.clean
+  end
+end
+
+#
 # all default Fabrications should valide
 #
 
 Fabricator(:user) do
-  name 'Joe User'
+  name "Joe User"
   role :admin
   email "joe@user.com"
   password "password"
 end
 
 Fabricator(:investment) do
-  name 'IBM'
+  name "IBM"
 end
 
 Fabricator(:source) do
   household
-  name 'IBM'
+  name "IBM"
 end
 
 Fabricator(:recommendation) do
@@ -48,17 +62,17 @@ Fabricator(:recommendation) do
 end
 
 Fabricator(:household) do
-  name 'Smith'
+  name "Smith"
 end
 
 Fabricator(:brokerage) do
   household
-  name 'TD Ameritrade'
+  name "TD Ameritrade"
 end
 
 Fabricator(:account ) do
   brokerage
-  name 'Smith IRA'
+  name "Smith IRA"
 end
 
 Fabricator(:holding) do
