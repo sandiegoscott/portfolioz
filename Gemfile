@@ -33,11 +33,18 @@ end
 
 group :development, :test do
   # uncomment to use Rspec
-  # gem 'rspec-rails'
-  # gem 'factory_girl_rails'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
   # uncomment to use Minitest
-  gem 'minitest-rails'
-  gem 'fabrication'
+  # gem 'minitest-rails'
+  # gem 'fabrication'
+end
+
+# http://girders.org/blog/2014/02/06/setup-rails-41-spring-rspec-and-guard/
+group :development, :test do
+  gem 'spring-commands-rspec'
+  gem 'guard-rspec'
+  gem 'rb-fsevent' if `uname` =~ /Darwin/
 end
 
 group :test do
