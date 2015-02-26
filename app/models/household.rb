@@ -7,8 +7,6 @@ class Household < ActiveRecord::Base
 
   validates   :name, presence: true
 
-  #attr_accessible :name
-
   # ================ methods ================
 
   def explain( tag )
