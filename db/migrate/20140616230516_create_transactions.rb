@@ -1,7 +1,7 @@
 class CreateTransactions < ActiveRecord::Migration
   def change
     create_table :transactions do |t|
-      t.integer     :kind
+      t.string      :type, :limit => 20
       t.references  :investment
       t.references  :account
       t.references  :holding

@@ -10,6 +10,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 
+gem 'active_type'
 gem 'bootstrap-sass'
 gem 'devise'
 gem 'haml'
