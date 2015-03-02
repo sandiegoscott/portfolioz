@@ -10,7 +10,7 @@ class Transaction < ActiveRecord::Base
 
   # validate associations
   #validates   :investment, presence: true, :if => :trade_or_dividend?, :unless => :new_record?
-  validates   :account, presence: true, :unless => :new_record?
+  validates   :account, presence: true  #,  :unless => :new_record?
   #validates   :holding, presence: true, :if => :trade?, :unless => :new_record?
 
   # validate date
