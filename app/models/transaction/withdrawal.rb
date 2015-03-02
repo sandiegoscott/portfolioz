@@ -1,4 +1,4 @@
-class Transaction::AsWithdrawal < ActiveType::Record[Transaction]
+class Transaction::AsWithdrawal < Transaction # ActiveType::Record[Transaction]
 
   before_validation   :compute_cash_delta
 

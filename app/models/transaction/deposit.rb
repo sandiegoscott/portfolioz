@@ -1,4 +1,4 @@
-class Transaction::AsDeposit < ActiveType::Record[Transaction]
+class Transaction::AsDeposit < Transaction # ActiveType::Record[Transaction]
 
   before_validation   :compute_cash_delta
 
