@@ -11,13 +11,16 @@ class BrokerageTest < Minitest::Test
     end
 
     it "must calculate cash correctly" do
-      brokerage = Fabricate.build(:brokerage)
-      account = Fabricate.build(:account, brokerage: brokerage)
+      holding = Fabricate.create(:holding)
+      investment = holding.investment
+      account = holding.account
+      brokerage = account.brokerage
       Fabricate.create(:deposit, amount: 11000.0, account: account)
       Fabricate.create(:withdrawal, amount: 1000.0, account: account)
-      Fabricate.create(:buy, shares: 100, price: 35.763, commission: 7.00, account: account, investment: nil, holding: nil)
-      Fabricate.create(:sell, shares: 100, price: 15.763, commission: 7.00, account: account, investment: nil, holding: nil)
-      brokerage.cash.must_equal 7986.00
+      Fabricate.create(:buy, shares: 100, price: 35.763, commission: 7.00, account: account, investment: investment, holding: holding)
+      Fabricate.create(:sell, shares: 90, price: 15.763, commission: 7.00, account: account, investment: investment, holding: holding)
+      brokerage.cash.must_equal 7828.37
+      holding.shares.must_equal 10.0
     end
   end
 end

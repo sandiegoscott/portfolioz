@@ -1,5 +1,7 @@
 class Transaction::Deposit < ActiveType::Record[Transaction]
 
+  before_validation   :compute_cash_delta
+
   private
 
   def compute_cash_delta

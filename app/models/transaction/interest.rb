@@ -4,6 +4,8 @@ class Transaction::Interest < ActiveType::Record[Transaction]
 
   validates   :investment, presence: true
 
+  before_validation   :compute_cash_delta
+
   private
 
   def compute_cash_delta

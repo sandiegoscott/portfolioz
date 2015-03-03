@@ -5,15 +5,15 @@ class Transaction < ActiveRecord::Base
 
   belongs_to  :account
 
-  validates   :account, presence: true  #,  :unless => :new_record?
+  validates   :account, presence: true
   validates   :ddate, presence: true
   
   validates   :cash_delta, numericality: true  # all transactions produce a cash change
   
   attr_accessor :date_str  # can supply date as a string
 
-  before_validation   :set_date, :compute_cash_delta  # , :compute_shares_delta
-  after_save          :update_account #, :update_holding
+  before_validation   :set_date
+  after_save          :update_account
 
   private
 

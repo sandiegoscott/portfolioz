@@ -114,12 +114,14 @@ Fabricator(:interest, from: 'Transaction::Interest') do
   amount 100.00
 end
 
-Fabricator(:buy, from: 'Transaction::Buy') do
+Fabricator(:buy, class_name: 'Transaction::Buy', from: 'Transaction::Buy') do
+  #type 'Buy'
   account
   investment
   holding
   shares 75.0
   price 100.00
+  commission 10.00
 end
 
 Fabricator(:cover, from: 'Transaction::Cover') do

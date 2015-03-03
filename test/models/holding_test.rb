@@ -14,11 +14,11 @@ class HoldingTest < Minitest::Test
     end
 
     it "should calculate shares correctly" do
-      holding = Fabricate.build(:holding, account: nil)
-      Fabricate.create(:deposit, amount: 11000.0, account: nil, investment: nil, holding: holding)
-      Fabricate.create(:withdrawal, amount: 1000.0, account: nil, investment: nil, holding: holding)
-      Fabricate.create(:buy, shares: 100.0, price: 35.763, commission: 7.00, account: nil, investment: nil, holding: holding)
-      Fabricate.create(:sell, shares: 34.0, price: 15.763, commission: 7.00, account: nil, investment: nil, holding: holding)
+      holding = Fabricate.create(:holding)
+      investment = holding.investment
+      account = holding.account
+      Fabricate.create(:buy, shares: 100.0, price: 35.763, commission: 7.00, holding: holding, investment: investment, account: account)
+      Fabricate.create(:sell, shares: 34.0, price: 15.763, commission: 7.00, holding: holding, investment: investment, account: account)
       holding.shares.must_equal 66.0
     end
 
