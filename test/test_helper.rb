@@ -23,23 +23,37 @@ class ActiveSupport::TestCase
 end
 
 #
+# use transactions -- comment this out to see the test database entries
+#
+
+DatabaseCleaner.strategy = :transaction
+class MiniTest::Spec
+  before :each do
+    DatabaseCleaner.start
+  end
+  after :each do
+    DatabaseCleaner.clean
+  end
+end
+
+#
 # all default Fabrications should valide
 #
 
 Fabricator(:user) do
-  name 'Joe User'
+  name "Joe User"
   role :admin
   email "joe@user.com"
   password "password"
 end
 
 Fabricator(:investment) do
-  name 'IBM'
+  name "IBM"
 end
 
 Fabricator(:source) do
   household
-  name 'IBM'
+  name "IBM"
 end
 
 Fabricator(:recommendation) do
@@ -48,17 +62,17 @@ Fabricator(:recommendation) do
 end
 
 Fabricator(:household) do
-  name 'Smith'
+  name "Smith"
 end
 
 Fabricator(:brokerage) do
   household
-  name 'TD Ameritrade'
+  name "TD Ameritrade"
 end
 
 Fabricator(:account ) do
   brokerage
-  name 'Smith IRA'
+  name "Smith IRA"
 end
 
 Fabricator(:holding) do
@@ -73,67 +87,63 @@ Fabricator(:split) do
   shares_after 1.0
 end
 
-Fabricator(:transaction) do
+Fabricator(:deposit, from: 'Transaction::Deposit') do
   account
-end
-
-Fabricator(:deposit, from: :transaction) do
-  kind :deposit
   amount 100.00
 end
 
-Fabricator(:withdrawal, from: :transaction) do
-  kind :withdrawal
+Fabricator(:withdrawal, from: 'Transaction::Withdrawal') do
+  account
   amount 100.00
 end
 
-Fabricator(:expense, from: :transaction) do
-  kind :expense
+Fabricator(:expense, from: 'Transaction::Expense') do
+  account
   amount 100.00
 end
 
-Fabricator(:dividend, from: :transaction) do
+Fabricator(:dividend, from: 'Transaction::Dividend') do
+  account
   investment
-  kind :dividend
   amount 100.00
 end
 
-Fabricator(:interest, from: :transaction) do
-  kind :interest
+Fabricator(:interest, from: 'Transaction::Interest') do
+  account
+  investment
   amount 100.00
 end
 
-Fabricator(:buy, from: :transaction) do
+Fabricator(:buy, class_name: 'Transaction::Buy', from: 'Transaction::Buy') do
+  #type 'Buy'
+  account
   investment
   holding
-  kind :buy
+  shares 75.0
+  price 100.00
+  commission 10.00
+end
+
+Fabricator(:cover, from: 'Transaction::Cover') do
+  account
+  investment
+  holding
   shares 75.0
   price 100.00
 end
 
-Fabricator(:cover, from: :transaction) do
-  investment
+Fabricator(:sell, from: 'Transaction::Sell') do
   account
-  holding
-  kind :cover
-  shares 75.0
-  price 100.00
-end
-
-Fabricator(:sell, from: :transaction) do
-  kind :sell
   investment
-  account
   holding
   shares 31.00000
   price 5.00
   commission 5.00
 end
 
-Fabricator(:short, from: :transaction) do
-  kind :short
-  investment
+Fabricator(:short, from: 'Transaction::Short') do
   account
+  investment
   holding
   shares 75.0
   price 100.00

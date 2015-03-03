@@ -3,7 +3,7 @@ require 'test_helper'
 class UserTest < Minitest::Test
   describe UserTest do
     it "must validate properly" do
-      user = Fabricate(:user)
+      user = Fabricate.build(:user)
       user.valid?.must_equal true
       user.admin?.must_equal true
       user.email.wont_be_nil
