@@ -1,4 +1,4 @@
-class Transaction::Withdrawal < ActiveType::Record[Transaction]
+class Transaction::Expense < ActiveType::Record[Transaction]
 
   private
 
