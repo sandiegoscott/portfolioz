@@ -18,13 +18,11 @@ class Transaction < ActiveRecord::Base
   private
 
   def set_date
-    #puts ">>>>> /Transaction#set_date/"
     self.ddate = Date.parse(date_str) if date_str
     self.ddate ||= Date.today  # uninitialized date means today
   end
 
   def update_account
-    #puts ">>>>> /Transaction#update_account/"
     account.compute_cash if account
   end
 
