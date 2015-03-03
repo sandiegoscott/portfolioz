@@ -87,67 +87,61 @@ Fabricator(:split) do
   shares_after 1.0
 end
 
-Fabricator(:transaction) do
+Fabricator(:deposit, from: 'Transaction::Deposit') do
   account
-end
-
-Fabricator(:deposit, from: :transaction) do
-  kind :deposit
   amount 100.00
 end
 
-Fabricator(:withdrawal, from: :transaction) do
-  kind :withdrawal
+Fabricator(:withdrawal, from: 'Transaction::Withdrawal') do
+  account
   amount 100.00
 end
 
-Fabricator(:expense, from: :transaction) do
-  kind :expense
+Fabricator(:expense, from: 'Transaction::Expense') do
+  account
   amount 100.00
 end
 
-Fabricator(:dividend, from: :transaction) do
+Fabricator(:dividend, from: 'Transaction::Dividend') do
+  account
   investment
-  kind :dividend
   amount 100.00
 end
 
-Fabricator(:interest, from: :transaction) do
-  kind :interest
+Fabricator(:interest, from: 'Transaction::Interest') do
+  account
+  investment
   amount 100.00
 end
 
-Fabricator(:buy, from: :transaction) do
+Fabricator(:buy, from: 'Transaction::Buy') do
+  account
   investment
   holding
-  kind :buy
   shares 75.0
   price 100.00
 end
 
-Fabricator(:cover, from: :transaction) do
-  investment
+Fabricator(:cover, from: 'Transaction::Cover') do
   account
+  investment
   holding
-  kind :cover
   shares 75.0
   price 100.00
 end
 
-Fabricator(:sell, from: :transaction) do
-  kind :sell
-  investment
+Fabricator(:sell, from: 'Transaction::Sell') do
   account
+  investment
   holding
   shares 31.00000
   price 5.00
   commission 5.00
 end
 
-Fabricator(:short, from: :transaction) do
-  kind :short
-  investment
+Fabricator(:short, from: 'Transaction::Short') do
   account
+  investment
   holding
   shares 75.0
   price 100.00
