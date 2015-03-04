@@ -1,9 +1,5 @@
 class Transaction::Interest < ActiveType::Record[Transaction]
 
-  belongs_to  :investment
-
-  validates   :investment, presence: true
-
   before_validation   :compute_cash_delta
 
   private
