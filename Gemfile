@@ -20,6 +20,7 @@ gem 'pundit'
 group :development, :test do
   gem 'byebug'  # Ruby 2 debugger
   gem 'web-console', '~> 2.0'
+  gem 'haml-rails'
   gem 'spring'
 end
 
