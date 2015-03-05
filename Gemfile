@@ -2,6 +2,13 @@ source 'https://rubygems.org'
 
 ruby '2.2.0'
 
+group :development do
+  unless ENV['TEST_SUITE'] == 'minitest' || ENV['TEST_SUITE'] == 'rspec'
+    puts "\nexport TEST_SUITE=rspec; bundle install\n\n  -- or --\n\nexport TEST_SUITE=minitest; bundle install\n\n"
+    exit
+  end
+end
+
 gem 'rails', '4.2.0'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -30,31 +37,31 @@ group :development do
   gem 'erb2haml'
   gem 'quiet_assets'
   gem 'rails_layout'
-  # uncomment for Rspec
-  # gem 'spring-commands-rspec'
 end
 
 group :development, :test do
-  # uncomment to use Rspec
-  gem 'rspec-rails'
-  gem 'factory_girl_rails'
-  # uncomment to use Minitest
-  # gem 'minitest-rails'
-  # gem 'fabrication'
+  if ENV['TEST_SUITE'] == 'rspec'
+    gem 'rspec-rails'
+    gem 'factory_girl_rails'
+  elsif ENV['TEST_SUITE'] == 'minitest'
+    gem 'minitest-rails'
+    gem 'fabrication'
+  end
 end
 
 # http://girders.org/blog/2014/02/06/setup-rails-41-spring-rspec-and-guard/
 group :development, :test do
-  gem 'spring-commands-rspec'
-  gem 'guard-rspec'
+  if ENV['TEST_SUITE'] == 'rspec'
+    gem 'spring-commands-rspec'
+    gem 'guard-rspec'
+  end
   gem 'rb-fsevent' if `uname` =~ /Darwin/
 end
 
 group :test do
   # uncomment as needed
   gem 'faker'
-  # uncomment for Rspec
-  # gem 'capybara'
+  gem 'capybara' if ENV['TEST_SUITE'] == 'rspec'
   gem 'database_cleaner'
   # gem 'launchy'
   # gem 'selenium-webdriver'

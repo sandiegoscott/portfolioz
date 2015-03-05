@@ -77,7 +77,6 @@ ActiveRecord::Schema.define(version: 20140616230904) do
   end
 
   create_table "transactions", force: :cascade do |t|
-    t.integer  "kind",          limit: 4
     t.integer  "investment_id", limit: 4
     t.integer  "account_id",    limit: 4
     t.integer  "holding_id",    limit: 4
