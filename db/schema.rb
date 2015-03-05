@@ -95,6 +95,9 @@ ActiveRecord::Schema.define(version: 20140616230904) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.integer  "household_id",           limit: 4
+    t.integer  "role",                   limit: 4
+    t.string   "name",                   limit: 30
     t.string   "email",                  limit: 255, default: "", null: false
     t.string   "encrypted_password",     limit: 255, default: "", null: false
     t.string   "reset_password_token",   limit: 255
@@ -107,8 +110,6 @@ ActiveRecord::Schema.define(version: 20140616230904) do
     t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name",                   limit: 255
-    t.integer  "role",                   limit: 4
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
