@@ -6,8 +6,11 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module RailsDevisePundit
+module Portfolioz
   class Application < Rails::Application
+
+  # avoid namespacing transactions
+  config.autoload_paths += %W( #{config.root}/app/models/transaction )
 
 =begin
     config.generators do |g|

@@ -1,4 +1,4 @@
-class Transaction::Expense < ActiveType::Record[Transaction]
+class Expense < ActiveType::Record[Transaction]
 
   before_validation   :compute_cash_delta
 

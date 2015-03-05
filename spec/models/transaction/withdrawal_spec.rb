@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Transaction::Withdrawal do
+describe Withdrawal do
 
   it "must compute attributes properly" do
 

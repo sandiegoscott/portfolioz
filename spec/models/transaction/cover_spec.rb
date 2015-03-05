@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Transaction::Cover do
+describe Cover do
 
   it "compute attributes properly" do
 

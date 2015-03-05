@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Transaction::Buy do
+describe Buy do
 
   it "compute attributes properly" do
 

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Transaction::Short do
+describe Short do
 
   it "compute attributes properly" do
 

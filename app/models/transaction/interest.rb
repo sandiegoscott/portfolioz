@@ -1,4 +1,4 @@
-class Transaction::Interest < ActiveType::Record[Transaction]
+class Interest < ActiveType::Record[Transaction]
 
   before_validation   :compute_cash_delta
 

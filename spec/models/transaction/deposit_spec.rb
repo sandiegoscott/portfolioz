@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Transaction::Deposit do
+describe Deposit do
 
   it "must compute attributes properly" do
 

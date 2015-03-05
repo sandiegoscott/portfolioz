@@ -51,41 +51,33 @@ FactoryGirl.define do
     account
   end
 
-  factory :deposit, :class => Transaction::Deposit do
+  factory :deposit do
     account
     amount 100.00
   end
 
-  factory :withdrawal, :class => Transaction::Withdrawal do 
+  factory :withdrawal do 
     account
     amount 100.00
   end
 
-  factory :expense, :class => Transaction::Expense do 
+  factory :expense do 
     account
     amount 100.00
   end
 
-  factory :dividend, :class => Transaction::Dividend do 
+  factory :dividend do 
     investment
     account
     amount 100.00
   end
 
-  factory :interest, :class => Transaction::Interest do 
+  factory :interest do 
     account
     amount 100.00
   end
 
-  factory :buy, :class => Transaction::Buy do 
-    investment
-    account
-    holding
-    shares 75.0
-    price 100.00
-  end
-
-  factory :cover, :class => Transaction::Cover do 
+  factory :buy do 
     investment
     account
     holding
@@ -93,7 +85,15 @@ FactoryGirl.define do
     price 100.00
   end
 
-  factory :sell, :class => Transaction::Sell do 
+  factory :cover do
+    investment
+    account
+    holding
+    shares 75.0
+    price 100.00
+  end
+
+  factory :sell do 
     investment
     account
     holding
@@ -102,7 +102,7 @@ FactoryGirl.define do
     commission 5.00
   end
 
-  factory :short, :class => Transaction::Short do 
+  factory :short do 
     investment
     account
     holding

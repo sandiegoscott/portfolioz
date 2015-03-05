@@ -4,7 +4,7 @@ class DepositsController < ApplicationController
   respond_to :html
 
   def index
-    @deposits = Transaction::Deposit.all
+    @deposits = Deposit.all
     respond_with(@deposits)
   end
 
@@ -13,7 +13,7 @@ class DepositsController < ApplicationController
   end
 
   def new
-    @deposit = Transaction::Deposit.new
+    @deposit = Deposit.new
     respond_with(@deposit)
   end
 
@@ -21,7 +21,7 @@ class DepositsController < ApplicationController
   end
 
   def create
-    @deposit = Transaction::Deposit.new(deposit_params)
+    @deposit = Deposit.new(deposit_params)
     @deposit.save
     respond_with(@deposit)
   end
@@ -38,7 +38,7 @@ class DepositsController < ApplicationController
 
   private
     def set_deposit
-      @deposit = Transaction::Deposit.find(params[:id])
+      @deposit = Deposit.find(params[:id])
     end
 
     def deposit_params

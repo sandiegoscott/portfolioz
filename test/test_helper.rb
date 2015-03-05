@@ -87,33 +87,33 @@ Fabricator(:split) do
   shares_after 1.0
 end
 
-Fabricator(:deposit, from: 'Transaction::Deposit') do
+Fabricator(:deposit) do
   account
   amount 100.00
 end
 
-Fabricator(:withdrawal, from: 'Transaction::Withdrawal') do
+Fabricator(:withdrawal) do
   account
   amount 100.00
 end
 
-Fabricator(:expense, from: 'Transaction::Expense') do
+Fabricator(:expense) do
   account
   amount 100.00
 end
 
-Fabricator(:dividend, from: 'Transaction::Dividend') do
+Fabricator(:dividend) do
   account
   investment
   amount 100.00
 end
 
-Fabricator(:interest, from: 'Transaction::Interest') do
+Fabricator(:interest) do
   account
   amount 100.00
 end
 
-Fabricator(:buy, class_name: 'Transaction::Buy', from: 'Transaction::Buy') do
+Fabricator(:buy) do
   #type 'Buy'
   account
   investment
@@ -123,7 +123,7 @@ Fabricator(:buy, class_name: 'Transaction::Buy', from: 'Transaction::Buy') do
   commission 10.00
 end
 
-Fabricator(:cover, from: 'Transaction::Cover') do
+Fabricator(:cover) do
   account
   investment
   holding
@@ -131,7 +131,7 @@ Fabricator(:cover, from: 'Transaction::Cover') do
   price 100.00
 end
 
-Fabricator(:sell, from: 'Transaction::Sell') do
+Fabricator(:sell) do
   account
   investment
   holding
@@ -140,16 +140,10 @@ Fabricator(:sell, from: 'Transaction::Sell') do
   commission 5.00
 end
 
-Fabricator(:short, from: 'Transaction::Short') do
+Fabricator(:short) do
   account
   investment
   holding
   shares 75.0
   price 100.00
 end
-
-
-  #enum kind: [:deposit, :withdrawal, :expense, :dividend, :interest, :buy, :cover, , :sell, :short]
-
-
-

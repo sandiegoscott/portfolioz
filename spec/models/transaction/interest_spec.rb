@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Transaction::Interest do
+describe Interest do
 
   it "must compute attributes properly" do
 

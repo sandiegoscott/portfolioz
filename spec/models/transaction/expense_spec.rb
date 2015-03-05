@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Transaction::Expense do
+describe Expense do
 
   it "must compute attributes properly" do
 

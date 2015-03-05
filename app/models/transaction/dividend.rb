@@ -1,4 +1,4 @@
-class Transaction::Dividend < ActiveType::Record[Transaction]
+class Dividend < ActiveType::Record[Transaction]
 
   belongs_to  :investment
 
