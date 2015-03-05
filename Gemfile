@@ -18,6 +18,7 @@ gem 'mysql2'
 gem 'pundit'
 
 group :development, :test do
+  gem 'awesome_print', :require => 'ap'
   gem 'byebug'  # Ruby 2 debugger
   gem 'web-console', '~> 2.0'
   gem 'haml-rails'
