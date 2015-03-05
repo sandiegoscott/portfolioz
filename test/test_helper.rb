@@ -110,7 +110,6 @@ end
 
 Fabricator(:interest, from: 'Transaction::Interest') do
   account
-  investment
   amount 100.00
 end
 

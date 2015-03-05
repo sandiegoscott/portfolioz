@@ -9,7 +9,7 @@ class InterestTest < Minitest::Test
       interest.valid?.must_equal true
       interest.account.wont_be_nil
 
-      interest = Fabricate.build(:interest, investment: nil)
+      interest = Fabricate.build(:interest, account: nil)
       interest.valid?.must_equal false
 
     end
