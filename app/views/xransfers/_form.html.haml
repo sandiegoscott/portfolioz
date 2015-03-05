@@ -1,0 +1,10 @@
+= form_for @xransfer do |f|
+  - if @xransfer.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@xransfer.errors.count, "error")} prohibited this xransfer from being saved:"
+      %ul
+        - @xransfer.errors.full_messages.each do |msg|
+          %li= msg
+
+  .actions
+    = f.submit 'Save'
