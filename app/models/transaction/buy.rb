@@ -1,4 +1,4 @@
-class Buy < ActiveType::Record[Trade]
+class Buy < Trade
 
   before_validation   :compute_cash_delta, :compute_shares_delta
 

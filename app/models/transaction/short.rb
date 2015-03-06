@@ -1,4 +1,4 @@
-class Short < ActiveType::Record[Trade]
+class Short < Trade
 
   before_validation   :compute_cash_delta, :compute_shares_delta
 

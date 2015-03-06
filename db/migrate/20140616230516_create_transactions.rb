@@ -1,6 +1,7 @@
 class CreateTransactions < ActiveRecord::Migration
   def change
     create_table :transactions do |t|
+      t.string      :type
       t.references  :investment
       t.references  :account
       t.references  :holding

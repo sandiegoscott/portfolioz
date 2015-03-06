@@ -1,4 +1,4 @@
-class Cover < ActiveType::Record[Trade]
+class Cover < Trade
 
   before_validation   :compute_cash_delta, :compute_shares_delta
 
