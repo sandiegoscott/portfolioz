@@ -129,6 +129,7 @@ Fabricator(:cover) do
   holding
   shares 75.0
   price 100.00
+  commission 10.00
 end
 
 Fabricator(:sell) do
@@ -146,4 +147,5 @@ Fabricator(:short) do
   holding
   shares 75.0
   price 100.00
+  commission 10.00
 end

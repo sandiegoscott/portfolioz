@@ -12,7 +12,7 @@ class Transaction < ActiveRecord::Base
   
   attr_accessor :date_str  # can supply date as a string
 
-  before_validation   :set_date
+  before_validation   :set_date, :set_subtype
   after_save          :update_account
 
   private
@@ -20,6 +20,10 @@ class Transaction < ActiveRecord::Base
   def set_date
     self.ddate = Date.parse(date_str) if date_str
     self.ddate ||= Date.today  # uninitialized date means today
+  end
+
+  def set_subtype
+    self.subtype = 'Transaction'
   end
 
   def update_account

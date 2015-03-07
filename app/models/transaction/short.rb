@@ -1,19 +1,18 @@
 class Short < Trade
 
-  before_validation   :compute_cash_delta, :compute_shares_delta
+  before_validation   :compute_quantities
 
   private
 
-  def compute_cash_delta
+  def compute_quantities
     if shares.nil? || price.nil?
+      self.amount = nil
       self.cash_delta = nil
     else
-      self.cash_delta = shares * price - commission
+      self.amount = shares * price - commission
+      self.cash_delta = amount
     end
-  end
-
-  def compute_shares_delta
-    self.shares_delta = -shares
+    self.shares_delta = shares.nil? ? nil : -shares
   end
 
 end
