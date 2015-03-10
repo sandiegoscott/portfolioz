@@ -48,3 +48,7 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
 end
+
+# load the seeds
+Rails.application.load_seed
+

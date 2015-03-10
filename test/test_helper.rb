@@ -37,7 +37,13 @@ class MiniTest::Spec
 end
 
 #
-# all default Fabrications should valide
+# load the seeds
+#
+
+Rails.application.load_seed
+
+#
+# all default Fabrications should validate
 #
 
 Fabricator(:user) do
