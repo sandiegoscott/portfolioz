@@ -1,6 +1,10 @@
-%p#notice= notice
+.container
+  .row
+    %h3 User
+    .column
+      %p
+        Type: #{@transaction.type}
 
-
-= link_to 'Edit', edit_transaction_path(@transaction)
-\|
-= link_to 'Back', transactions_path
+      = link_to 'Edit', edit_transaction_path(@transaction)
+      %br
+      = link_to 'Back', transactions_path

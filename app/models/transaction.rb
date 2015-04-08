@@ -30,4 +30,7 @@ class Transaction < ActiveRecord::Base
     account.compute_cash if account
   end
 
+  # use if necessary
+  # raise NotImplementedError
+  
 end
