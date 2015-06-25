@@ -3,7 +3,7 @@ require 'test_helper'
 class HoldingTest < Minitest::Test
   describe HoldingTest do
 
-    it "must validate properly" do
+    it "should validate properly" do
       holding = Fabricate.build(:holding)
       holding.valid?.must_equal true
       holding.account.wont_be_nil

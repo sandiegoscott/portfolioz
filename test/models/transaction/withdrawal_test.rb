@@ -3,7 +3,7 @@ require 'test_helper'
 class WithdrawalTest < Minitest::Test
   describe WithdrawalTest do
 
-    it "must validate properly" do
+    it "should validate properly" do
 
       withdrawal = Fabricate.create(:withdrawal)
       withdrawal.valid?.must_equal true
@@ -14,7 +14,7 @@ class WithdrawalTest < Minitest::Test
 
     end
 
-    it "must compute attributes properly" do
+    it "should compute attributes properly" do
 
       withdrawal = Fabricate.create(:withdrawal, amount: 150.0, date_str: "2014-10-31")
       withdrawal.ddate.must_equal Date.new(2014,10,31)

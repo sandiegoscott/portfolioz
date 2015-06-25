@@ -276,7 +276,7 @@ DEPENDENCIES
   mysql2
   pundit
   quiet_assets
-  rails (= 4.2.0)
+  rails (= 4.2)
   rails_layout
   rb-fsevent
   rspec-rails

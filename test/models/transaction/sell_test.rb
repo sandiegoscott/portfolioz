@@ -3,7 +3,7 @@ require 'test_helper'
 class SellTest < Minitest::Test
   describe SellTest do
 
-    it "must validate properly" do
+    it "should validate properly" do
 
       sell = Fabricate.create(:sell)
       sell.valid?.must_equal true
@@ -22,7 +22,7 @@ class SellTest < Minitest::Test
 
     end
 
-    it "compute attributes properly" do
+    it "should compute attributes properly" do
 
       sell = Fabricate.create(:sell, shares: 29.0, price: 5.0, commission: 5.00)
       sell.cash_delta.must_equal 140.00

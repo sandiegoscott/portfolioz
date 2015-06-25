@@ -2,7 +2,7 @@ require 'test_helper'
 
 class BrokerageTest < Minitest::Test
   describe BrokerageTest do
-    it "must validate properly" do
+    it "should validate properly" do
       brokerage = Fabricate.build(:brokerage)
       brokerage.valid?.must_equal true
       brokerage.household.wont_be_nil
@@ -10,7 +10,7 @@ class BrokerageTest < Minitest::Test
       Fabricate.create(:brokerage, household: nil).valid?.must_equal false
     end
 
-    it "must calculate cash correctly" do
+    it "should calculate cash correctly" do
       holding = Fabricate.create(:holding)
       investment = holding.investment
       account = holding.account

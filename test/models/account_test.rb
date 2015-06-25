@@ -3,7 +3,7 @@ require 'test_helper'
 class AccountTest < Minitest::Test
   describe AccountTest do
 
-    it "must validate properly" do
+    it "should validate properly" do
       account = Fabricate.build(:account)
       account.valid?.must_equal true
       account.brokerage.wont_be_nil

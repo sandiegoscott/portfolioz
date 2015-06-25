@@ -3,7 +3,7 @@ require 'test_helper'
 class BuyTest < Minitest::Test
   describe BuyTest do
 
-    it "must validate properly" do
+    it "should validate properly" do
 
       buy = Fabricate.create(:buy)
       buy.valid?.must_equal true

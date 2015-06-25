@@ -2,7 +2,7 @@ require 'test_helper'
 
 class SourceTest < Minitest::Test
   describe SourceTest do
-    it "must validate properly" do
+    it "should validate properly" do
       source = Fabricate.build(:source)
       source.valid?.must_equal true
       source.household.wont_be_nil

@@ -3,7 +3,7 @@ require 'test_helper'
 class ExpenseTest < Minitest::Test
   describe ExpenseTest do
 
-    it "must validate properly" do
+    it "should validate properly" do
 
       expense = Fabricate.create(:expense)
       expense.valid?.must_equal true
@@ -14,7 +14,7 @@ class ExpenseTest < Minitest::Test
 
     end
 
-    it "must compute attributes properly" do
+    it "should compute attributes properly" do
 
       expense = Fabricate.create(:expense, amount: 150.0, date_str: "2014-10-31")
       expense.ddate.must_equal Date.new(2014,10,31)

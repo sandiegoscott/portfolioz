@@ -2,7 +2,7 @@ require 'test_helper'
 
 class RecommendationTest < Minitest::Test
   describe RecommendationTest do
-    it "must validate properly" do
+    it "should validate properly" do
       recommendation = Fabricate.build(:recommendation)
       recommendation.valid?.must_equal true
       recommendation.investment.wont_be_nil

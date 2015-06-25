@@ -3,7 +3,7 @@ require 'test_helper'
 class CoverTest < Minitest::Test
   describe CoverTest do
 
-    it "must validate properly" do
+    it "should validate properly" do
 
       cover = Fabricate.create(:cover)
       cover.valid?.must_equal true

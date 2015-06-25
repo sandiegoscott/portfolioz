@@ -3,7 +3,7 @@ require 'test_helper'
 class DividendTest < Minitest::Test
   describe DividendTest do
 
-    it "must validate properly" do
+    it "should validate properly" do
 
       dividend = Fabricate.create(:dividend)
       dividend.valid?.must_equal true
@@ -18,7 +18,7 @@ class DividendTest < Minitest::Test
 
     end
 
-    it "must compute attributes properly" do
+    it "should compute attributes properly" do
 
       dividend = Fabricate.create(:dividend, amount: 150.0, date_str: "2014-10-31")
       dividend.ddate.must_equal Date.new(2014,10,31)

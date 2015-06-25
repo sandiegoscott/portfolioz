@@ -3,7 +3,7 @@ require 'test_helper'
 class ShortTest < Minitest::Test
   describe ShortTest do
 
-    it "must validate properly" do
+    it "should validate properly" do
 
       short = Fabricate.create(:short)
       short.valid?.must_equal true
@@ -22,7 +22,7 @@ class ShortTest < Minitest::Test
 
     end
 
-    it "compute attributes properly" do
+    it "should compute attributes properly" do
 
       short = Fabricate.create(:short, shares: 29.0, price: 5.0, commission: 5.00)
       short.cash_delta.must_equal 140.00
