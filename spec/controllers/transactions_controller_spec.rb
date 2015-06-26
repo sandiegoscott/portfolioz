@@ -1,18 +1,15 @@
 require 'rails_helper'
-require 'spec_helper'
 
 describe TransactionsController do
 
   describe 'GET #index' do
-    context 'with params[:letter]' do
-      it "populates an array of transactions"
-      it "renders the :index template"
-    end
+    it "populates an array of transactions"
+    it "renders the :index template"
   end
 
   describe 'GET #show' do
     it "assigns the requested transaction to @transaction" do
-      transaction = create(:deposit)
+      transaction = FactoryGirl.create(:deposit)
       get :show, id: transaction
       expect(assigns(:transaction)).to eq transaction
     end
