@@ -1,0 +1,51 @@
+%p#notice= notice
+
+%p
+  %b Type:
+  = @trade.type
+%p
+  %b Subtype:
+  = @trade.subtype
+%p
+  %b Investment:
+  = @trade.investment
+%p
+  %b Account:
+  = @trade.account
+%p
+  %b Holding:
+  = @trade.holding
+%p
+  %b Ddate:
+  = @trade.ddate
+%p
+  %b Shares:
+  = @trade.shares
+%p
+  %b Price:
+  = @trade.price
+%p
+  %b Commission:
+  = @trade.commission
+%p
+  %b Amount:
+  = @trade.amount
+%p
+  %b Cash delta:
+  = @trade.cash_delta
+%p
+  %b Shares delta:
+  = @trade.shares_delta
+%p
+  %b Shares before:
+  = @trade.shares_before
+%p
+  %b Shares after:
+  = @trade.shares_after
+%p
+  %b Note:
+  = @trade.note
+
+= link_to 'Edit', edit_trade_path(@trade)
+\|
+= link_to 'Back', trades_path

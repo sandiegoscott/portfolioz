@@ -1,6 +1,8 @@
 class Trade < Transaction
 
-  belongs_to  :investment
+  # STI--types of trades:
+  # buy, cover, sell, short
+
   belongs_to  :holding
 
   validates   :investment, presence: true

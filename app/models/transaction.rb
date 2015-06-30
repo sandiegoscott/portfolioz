@@ -1,9 +1,10 @@
 class Transaction < ActiveRecord::Base
 
   # STI--types of transactions:
-  # deposit, withdrawal, expense, interest, dividend, buy, cover, sell, short
+  # deposit, withdrawal, expense, interest, dividend
 
   belongs_to  :account
+  belongs_to  :investment  # used only for dividend and optionally for expense
 
   validates   :account, presence: true
   validates   :ddate, presence: true

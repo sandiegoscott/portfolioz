@@ -1,4 +1,4 @@
-= simple_form_for(@transaction) do |f|
+= simple_form_for(@trade) do |f|
   = f.error_notification
 
   .form-inputs
@@ -8,8 +8,14 @@
     = f.association :account
     = f.association :holding
     = f.input :ddate
+    = f.input :shares
+    = f.input :price
+    = f.input :commission
     = f.input :amount
     = f.input :cash_delta
+    = f.input :shares_delta
+    = f.input :shares_before
+    = f.input :shares_after
     = f.input :note
 
   .form-actions

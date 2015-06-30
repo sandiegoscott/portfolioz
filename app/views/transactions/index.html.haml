@@ -1,35 +1,37 @@
-.container
-  .row
-    %h1 Listing transactions
+%h1 Listing transactions
 
-    .column
-      %table.table
-        %thead
-          %tr
-            %th Date
-            %th Type
-            %th Investment
-            %th Shares
-            %th Price
-            %th Commission
-            %th Amount
-            %th Actions
-            
-        %tbody
-          - @transactions.each do |transaction|
-            %tr
-              %td= transaction.ddate
-              %td= transaction.type
-              %td= transaction.investment.symbol if transaction.subtype == 'Trade'
-              %td= transaction.shares
-              %td= transaction.price
-              %td= transaction.commission
-              %td= transaction.amount
-              %td
-                = link_to 'Edit', edit_transaction_path(transaction)
-                &nbsp;&nbsp;
-                = link_to 'Destroy', transaction_path(transaction), :method => :delete, :data => { :confirm => 'Are you sure?' }
+%table
+  %thead
+    %tr
+      %th Type
+      %th Subtype
+      %th Investment
+      %th Account
+      %th Holding
+      %th Ddate
+      %th Amount
+      %th Cash delta
+      %th Note
+      %th
+      %th
+      %th
+      
+  %tbody
+    - @transactions.each do |transaction|
+      %tr
+        %td= transaction.type
+        %td= transaction.subtype
+        %td= transaction.investment
+        %td= transaction.account
+        %td= transaction.holding
+        %td= transaction.ddate
+        %td= transaction.amount
+        %td= transaction.cash_delta
+        %td= transaction.note
+        %td= link_to 'Show', transaction
+        %td= link_to 'Edit', edit_transaction_path(transaction)
+        %td= link_to 'Destroy', transaction, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
-      %br
+%br
 
-      = link_to 'New Transaction', new_transaction_path
+= link_to 'New Transaction', new_transaction_path
