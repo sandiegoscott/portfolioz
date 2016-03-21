@@ -1,6 +1,6 @@
   puts "===== (seeds.rb) ====="
 
-if User.where(email: 'admin@portfolioz.co').empty?
+if User.where(email: 'admin@portfolioz.com').empty?
 
   puts "===== Adding seeds ====="
 
