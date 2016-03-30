@@ -1,7 +1,5 @@
 class Expense < Transaction
 
-  before_validation   :compute_cash_delta
-
   private
 
   def compute_cash_delta

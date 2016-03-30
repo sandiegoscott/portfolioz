@@ -83,6 +83,7 @@ FactoryGirl.define do
     holding
     shares 75.0
     price 100.00
+    commission 5.00
   end
 
   factory :cover do

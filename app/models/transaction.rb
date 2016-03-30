@@ -4,6 +4,7 @@ class Transaction < ActiveRecord::Base
   # deposit, withdrawal, expense, interest, dividend
 
   belongs_to  :account
+  belongs_to  :holding
   belongs_to  :investment  # used only for dividend and optionally for expense
 
   validates   :account, presence: true
@@ -13,7 +14,10 @@ class Transaction < ActiveRecord::Base
   
   attr_accessor :date_str  # can supply date as a string
 
-  before_validation   :set_date, :set_subtype
+  before_validation   :set_date
+  before_validation   :set_subtype
+  before_validation   :compute_cash_delta
+  
   after_save          :update_account
 
   private

@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(version: 20140616230904) do
 
   create_table "accounts", force: :cascade do |t|
-    t.integer  "brokerage_id", limit: 4
+    t.integer  "brokerage_id"
     t.string   "name",         limit: 60
     t.decimal  "value",                   precision: 12, scale: 2, default: 0.0
     t.decimal  "cash",                    precision: 12, scale: 2, default: 0.0, null: false
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 20140616230904) do
   end
 
   create_table "brokerages", force: :cascade do |t|
-    t.integer  "household_id", limit: 4
+    t.integer  "household_id"
     t.string   "name",         limit: 60
     t.decimal  "cash",                    precision: 12, scale: 2, default: 0.0, null: false
     t.datetime "created_at"
@@ -31,9 +31,9 @@ ActiveRecord::Schema.define(version: 20140616230904) do
   end
 
   create_table "holdings", force: :cascade do |t|
-    t.integer  "account_id",    limit: 4
-    t.integer  "investment_id", limit: 4
-    t.decimal  "shares",                  precision: 12, scale: 5
+    t.integer  "account_id"
+    t.integer  "investment_id"
+    t.decimal  "shares",        precision: 12, scale: 5
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20140616230904) do
   end
 
   create_table "investments", force: :cascade do |t|
-    t.integer  "household_id", limit: 4
+    t.integer  "household_id"
     t.string   "symbol",       limit: 20
     t.string   "name",         limit: 60, default: ""
     t.datetime "created_at"
@@ -53,25 +53,25 @@ ActiveRecord::Schema.define(version: 20140616230904) do
   end
 
   create_table "recommendations", force: :cascade do |t|
-    t.integer  "source_id",     limit: 4
-    t.integer  "investment_id", limit: 4
+    t.integer  "source_id"
+    t.integer  "investment_id"
     t.date     "ddate"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "sources", force: :cascade do |t|
-    t.integer  "household_id", limit: 4
+    t.integer  "household_id"
     t.string   "name",         limit: 60
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "splits", force: :cascade do |t|
-    t.integer  "investment_id", limit: 4
+    t.integer  "investment_id"
     t.date     "ddate"
-    t.decimal  "shares_before",           precision: 12, scale: 5
-    t.decimal  "shares_after",            precision: 12, scale: 5
+    t.decimal  "shares_before", precision: 12, scale: 5
+    t.decimal  "shares_after",  precision: 12, scale: 5
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -79,9 +79,9 @@ ActiveRecord::Schema.define(version: 20140616230904) do
   create_table "transactions", force: :cascade do |t|
     t.string   "type",          limit: 12
     t.string   "subtype",       limit: 12
-    t.integer  "investment_id", limit: 4
-    t.integer  "account_id",    limit: 4
-    t.integer  "holding_id",    limit: 4
+    t.integer  "investment_id"
+    t.integer  "account_id"
+    t.integer  "holding_id"
     t.date     "ddate"
     t.decimal  "shares",                    precision: 12, scale: 5
     t.decimal  "price",                     precision: 12, scale: 5
@@ -97,24 +97,24 @@ ActiveRecord::Schema.define(version: 20140616230904) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.integer  "household_id",           limit: 4
-    t.integer  "role",                   limit: 4
+    t.integer  "household_id"
+    t.integer  "role"
     t.string   "name",                   limit: 30
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
-    t.string   "reset_password_token",   limit: 255
+    t.string   "email",                             default: "", null: false
+    t.string   "encrypted_password",                default: "", null: false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
+    t.integer  "sign_in_count",                     default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",     limit: 255
-    t.string   "last_sign_in_ip",        limit: 255
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end

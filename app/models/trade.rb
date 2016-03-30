@@ -17,7 +17,8 @@ class Trade < Transaction
   validates   :commission, :numericality => { :greater_than_or_equal_to => 0 }
   validates   :shares_delta, :numericality => true
 
-  before_validation   :set_subtype
+  before_validation   :compute_shares_delta
+
   after_save          :update_holding
 
   private
