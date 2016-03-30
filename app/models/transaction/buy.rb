@@ -3,7 +3,6 @@ class Buy < Trade
   private
 
   def compute_cash_delta
-    #puts ">>>>> /Transaction::Buy#compute_cash_delta/"
     if shares.nil? || price.nil?
       self.cash_delta = nil
     else
@@ -12,7 +11,6 @@ class Buy < Trade
   end
 
   def compute_shares_delta
-    #puts ">>>>> /Transaction::Buy#compute_shares_delta/"
     self.shares_delta = shares
   end
 

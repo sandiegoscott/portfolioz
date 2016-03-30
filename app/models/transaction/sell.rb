@@ -1,16 +1,17 @@
 class Sell < Trade
 
-  before_validation   :compute_cash_delta
-
   private
 
   def compute_cash_delta
-    #puts ">>>>> /Transaction::Buy#compute_cash_delta/"
     if shares.nil? || price.nil?
-      cash_delta = nil
+      self.cash_delta = nil
     else
-      cash_delta = -(shares * price + commission)
+      self.cash_delta = shares * price - commission
     end
+  end
+
+  def compute_shares_delta
+    self.shares_delta = -shares
   end
 
 end
