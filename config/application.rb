@@ -10,7 +10,7 @@ module Portfolioz
   class Application < Rails::Application
 
   # avoid namespacing transactions
-  config.autoload_paths += %W( #{config.root}/app/models/transaction )
+  config.autoload_paths += %W( #{config.root}/app/models/transactions #{config.root}/app/models/transactions/trades)
 
   config.generators do |g|
     g.test_framework :rspec,
